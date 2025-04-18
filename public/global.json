@@ -32,7 +32,8 @@
     "test-parser-errors",
     "test-randomization",
     "test-skip-logic",
-    "test-step-logic"
+    "test-step-logic",
+    "basic-questionnaire-study"
 
   ],
   "configs": {
@@ -145,6 +146,9 @@
     "test-step-logic": {
       "path": "test-step-logic/config.json",
       "test": true
+    }, 
+    "basic-questionnaire-study": {
+      "path": "basic-questionnaire-study/config.json"
     }
   }
 }
