@@ -16,6 +16,8 @@
         "contactEmail": "contact@revisit.dev",
         "helpTextPath": "stress-performance/assets/help.md",
         "logoPath": "revisitAssets/monash.jpeg",
+        "urlParticipantIdParam": "PROLIFIC_PID",
+        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://www.prolific.com)",        
         "withProgressBar": true,
         "autoDownloadStudy": false,
         "sidebar": true
@@ -38,6 +40,21 @@
         }
     },
     "components": {
+        "prolific": {
+            "type": "markdown",
+            "path": "stress-performance/assets/introduction.md",
+            "response": [
+                {
+                    "id": "prolificId",
+                    "prompt": "Please enter your Prolific ID",
+                    "required": true,
+                    "location": "belowStimulus",
+                    "type": "shortText",
+                    "placeholder": "Prolific ID",
+                    "paramCapture": "PROLIFIC_PID"
+                }
+            ]
+        },        
         "introduction": {
             "type": "markdown",
             "path": "stress-performance/assets/Explanatory_Statement.md",
@@ -3059,8 +3076,8 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "prolific",
             "introduction",
-            "consent",
             "consent2",
             "training",
             {
