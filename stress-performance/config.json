@@ -15,7 +15,7 @@
     "uiConfig": {
         "contactEmail": "contact@revisit.dev",
         "helpTextPath": "stress-performance/assets/help.md",
-        "logoPath": "revisitAssets/revisitLogoSquare.svg",
+        "logoPath": "revisitAssets/monash.jpeg",
         "withProgressBar": true,
         "autoDownloadStudy": false,
         "sidebar": true
@@ -40,17 +40,22 @@
     "components": {
         "introduction": {
             "type": "markdown",
-            "path": "stress-performance/assets/introduction.md",
+            "path": "stress-performance/assets/Explanatory_Statement.md",
             "response": []
         },
         "consent": {
             "type": "markdown",
-            "path": "stress-performance/assets/consent.md",
+            "path": "stress-performance/assets/Explanatory_Statement2.md",
             "response": []
         },
+        "consent2": {
+            "type": "markdown",
+            "path": "stress-performance/assets/Explanatory_Statement3.md",
+            "response": []
+        },        
         "training":{
             "type": "markdown",
-            "path": "stress-performance/assets/training.md",
+            "path": "stress-performance/assets/definitions.md",
             "response": []
         },
         "demographics": {
@@ -3056,6 +3061,7 @@
         "components": [
             "introduction",
             "consent",
+            "consent2",
             "training",
             {
                 "order": "latinSquare",
