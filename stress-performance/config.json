@@ -60,11 +60,6 @@
             "path": "stress-performance/assets/Explanatory_Statement.md",
             "response": []
         },
-        "consent": {
-            "type": "markdown",
-            "path": "stress-performance/assets/Explanatory_Statement2.md",
-            "response": []
-        },
         "consent2": {
             "type": "markdown",
             "path": "stress-performance/assets/Explanatory_Statement3.md",
