@@ -20,7 +20,7 @@
         "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://www.prolific.com)",        
         "withProgressBar": true,
         "autoDownloadStudy": false,
-        "sidebar": true
+        "sidebar": true  
     },
     "baseComponents": {
         "shortest-path": {
