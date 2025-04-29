@@ -1,5 +1,6 @@
 {
     "components": [
+        "prolific",
         "introduction",
         "consent",
         "training",
@@ -52,6 +53,15 @@
                                 "spl_1_50_8"
                             ]
                         }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
+                            ]
+                        }
                     ]
                 },
                 {
@@ -97,6 +107,15 @@
                                 "spl_2_50_6",
                                 "spl_2_50_7",
                                 "spl_2_50_8"
+                            ]
+                        }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
                             ]
                         }
                     ]
@@ -146,6 +165,15 @@
                                 "spl_3_50_8"
                             ]
                         }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
+                            ]
+                        }
                     ]
                 },
                 {
@@ -191,6 +219,15 @@
                                 "spl_4_50_6",
                                 "spl_4_50_7",
                                 "spl_4_50_8"
+                            ]
+                        }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
                             ]
                         }
                     ]
@@ -240,6 +277,15 @@
                                 "spl_5_50_8"
                             ]
                         }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
+                            ]
+                        }
                     ]
                 },
                 {
@@ -285,6 +331,15 @@
                                 "spl_6_50_6",
                                 "spl_6_50_7",
                                 "spl_6_50_8"
+                            ]
+                        }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
                             ]
                         }
                     ]
@@ -334,6 +389,15 @@
                                 "spl_7_50_8"
                             ]
                         }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
+                            ]
+                        }
                     ]
                 },
                 {
@@ -381,6 +445,15 @@
                                 "spl_8_50_8"
                             ]
                         }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
+                            ]
+                        }
                     ]
                 },
                 {
@@ -426,6 +499,15 @@
                                 "spl_9_50_6",
                                 "spl_9_50_7",
                                 "spl_9_50_8"
+                            ]
+                        }
+                    ],
+                    "interruptions": [
+                        {
+                            "spacing": 1,
+                            "firstLocation": 1,
+                            "components": [
+                                "break"
                             ]
                         }
                     ]

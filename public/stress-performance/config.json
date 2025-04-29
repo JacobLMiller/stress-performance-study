@@ -17,7 +17,7 @@
         "helpTextPath": "stress-performance/assets/help.md",
         "logoPath": "revisitAssets/monash.jpeg",
         "urlParticipantIdParam": "PROLIFIC_PID",
-        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://www.prolific.com)",        
+        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://app.prolific.com/submissions/complete?cc=C1FIJHXG)",        
         "withProgressBar": true,
         "autoDownloadStudy": false,
         "sidebar": true  
@@ -60,7 +60,7 @@
             "path": "stress-performance/assets/Explanatory_Statement.md",
             "response": []
         },
-        "consent2": {
+        "consent": {
             "type": "markdown",
             "path": "stress-performance/assets/Explanatory_Statement3.md",
             "response": []
@@ -68,6 +68,11 @@
         "training":{
             "type": "markdown",
             "path": "stress-performance/assets/definitions.md",
+            "response": []
+        },
+        "break": {
+            "type": "markdown",
+            "path": "stress-performance/assets/break.md",
             "response": []
         },
         "demographics": {
@@ -150,7 +155,78 @@
                 }                                  
             ]
         },
-    
+    "train1": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                0,
+                "training"
+            ]
+        }
+    },
+    "train2": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                1,
+                "training"
+            ]
+        }
+    },
+    "train3": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                2,
+                "training"
+            ]
+        }
+    },
+    "train4": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                3,
+                "training"
+            ]
+        }
+    },
+    "train5": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                4,
+                "training"
+            ]
+        }
+    },
+    "train6": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "training",
+                5,
+                "training"
+            ]
+        }
+    },                    
     "spl_1_10_0": {
         "baseComponent": "shortest-path",
         "description": "Shortest path stimulus",
@@ -3073,8 +3149,20 @@
         "components": [
             "prolific",
             "introduction",
-            "consent2",
+            "consent",
             "training",
+            {
+                "order": "random",
+                "components": [
+                    "train1",
+                    "train2",
+                    "train3",
+                    "train4",
+                    "train5",
+                    "train6"
+                ]
+            },
+            "break",
             {
                 "order": "latinSquare",
                 "numSamples": 1,
@@ -3124,6 +3212,15 @@
                                     "spl_1_50_8"
                                 ]
                             }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
+                                ]
+                            }
                         ]
                     },
                     {
@@ -3169,6 +3266,15 @@
                                     "spl_2_50_6",
                                     "spl_2_50_7",
                                     "spl_2_50_8"
+                                ]
+                            }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
                                 ]
                             }
                         ]
@@ -3218,6 +3324,15 @@
                                     "spl_3_50_8"
                                 ]
                             }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
+                                ]
+                            }
                         ]
                     },
                     {
@@ -3263,6 +3378,15 @@
                                     "spl_4_50_6",
                                     "spl_4_50_7",
                                     "spl_4_50_8"
+                                ]
+                            }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
                                 ]
                             }
                         ]
@@ -3312,6 +3436,15 @@
                                     "spl_5_50_8"
                                 ]
                             }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
+                                ]
+                            }
                         ]
                     },
                     {
@@ -3357,6 +3490,15 @@
                                     "spl_6_50_6",
                                     "spl_6_50_7",
                                     "spl_6_50_8"
+                                ]
+                            }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
                                 ]
                             }
                         ]
@@ -3406,6 +3548,15 @@
                                     "spl_7_50_8"
                                 ]
                             }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
+                                ]
+                            }
                         ]
                     },
                     {
@@ -3453,6 +3604,15 @@
                                     "spl_8_50_8"
                                 ]
                             }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
+                                ]
+                            }
                         ]
                     },
                     {
@@ -3498,6 +3658,15 @@
                                     "spl_9_50_6",
                                     "spl_9_50_7",
                                     "spl_9_50_8"
+                                ]
+                            }
+                        ],
+                        "interruptions": [
+                            {
+                                "spacing": 1,
+                                "firstLocation": 1,
+                                "components": [
+                                    "break"
                                 ]
                             }
                         ]

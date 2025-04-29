@@ -1,4 +1,12 @@
 {
+    "training": [
+        "examples/n10-1-example-spl3.png",
+        "examples/n10-2-example-spl2.png",
+        "examples/n25-1-example-spl4.png",
+        "examples/n25-2-example-spl4.png",
+        "examples/n50-1-example-spl2.png",
+        "examples/n50-2-example-spl5.png"  
+    ],
     "1": {
         "10": [
             "SPL_Stimuli/n10-1/Images/n10-1A-drawing-0.4.png",

@@ -46,7 +46,8 @@
       "test": true
     },
     "stress-performance": {
-      "path": "stress-performance/config.json"
+      "path": "stress-performance/config.json",
+      "test": false
     }
   }
 }
