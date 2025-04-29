@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <div id="timer" style="height: 100px;"></div>
     <div style="height: 400px;">
         <img id="stimulus" height="400px"></img>
     </div>
@@ -23,8 +24,22 @@
         d3.json("data/orders.json").then(orderdata => {
             let img = document.getElementById("stimulus");
 
-            img.src = orderdata[group][size][index];
-        })
+            img.src = index === "training" ? orderdata[group][size] : orderdata[group][size][index];
+        });
+
+        let timetxt = document.getElementById("timer");
+        var ttime = 0;
+
+        function str_pad_left(string, pad, length) {
+           return (new Array(length + 1).join(pad) + string).slice(-length);
+        }
+
+        setInterval(() => {
+          let minutes = Math.floor(ttime / 60);
+          let seconds = ttime - minutes * 60;
+          timetxt.innerHTML = `${str_pad_left(minutes,'0',2)}:${str_pad_left(seconds,'0',2)}`;
+          ttime ++;
+        }, 1000)
 
     });
   </script>
