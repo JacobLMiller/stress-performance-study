@@ -1,0 +1,1 @@
+You will be shown a series of 6 training examples in which you will be able to check your answer. After which, the survey will begin. 
