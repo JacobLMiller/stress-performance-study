@@ -75,6 +75,11 @@
             "path": "stress-performance/assets/break.md",
             "response": []
         },
+        "training_prep": {
+            "type": "markdown",
+            "path": "stress-performance/assets/prep.md",
+            "response": []
+        },
         "demographics": {
             "type": "questionnaire",
             "response": [
@@ -147,8 +152,8 @@
                     "location": "aboveStimulus",
                     "type": "radio",
                     "options": [
-                        "Man",
-                        "Woman", 
+                        "Male",
+                        "Female", 
                         "Non-binary", 
                         "Other/not listed"
                     ]
@@ -165,7 +170,14 @@
                 0,
                 "training"
             ]
-        }
+        },
+        "correctAnswer": [{
+            "answer": "3",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
     },
     "train2": {
         "baseComponent": "shortest-path",
@@ -177,7 +189,14 @@
                 1,
                 "training"
             ]
-        }
+        },
+        "correctAnswer": [{
+            "answer": "2",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
     },
     "train3": {
         "baseComponent": "shortest-path",
@@ -189,7 +208,14 @@
                 2,
                 "training"
             ]
-        }
+        },
+        "correctAnswer": [{
+            "answer": "4",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
     },
     "train4": {
         "baseComponent": "shortest-path",
@@ -201,7 +227,14 @@
                 3,
                 "training"
             ]
-        }
+        },
+        "correctAnswer": [{
+            "answer": "4",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
     },
     "train5": {
         "baseComponent": "shortest-path",
@@ -213,7 +246,14 @@
                 4,
                 "training"
             ]
-        }
+        },
+        "correctAnswer": [{
+            "answer": "2",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
     },
     "train6": {
         "baseComponent": "shortest-path",
@@ -225,8 +265,15 @@
                 5,
                 "training"
             ]
-        }
-    },                    
+        },
+        "correctAnswer": [{
+            "answer": "5",
+            "id": "answer"
+        }],
+        "provideFeedback": true,
+        "allowFailedTraining": false,
+        "trainingAttempts": 6
+    },        
     "spl_1_10_0": {
         "baseComponent": "shortest-path",
         "description": "Shortest path stimulus",
@@ -3150,6 +3197,7 @@
             "prolific",
             "introduction",
             "consent",
+            "training_prep",
             "training",
             {
                 "order": "random",

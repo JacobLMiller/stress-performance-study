@@ -19,7 +19,7 @@ A ‘path’ is a series of steps between objects. For example, in the network b
 <img src="assets/images/6.jpg" width="300px"/>
 
 The ‘shortest path’ is, as its name suggests, the shortest path when there is more than one way to get from one object to another.
-For example, in the network below, the shortest path between F and B is 2 (going through A, but not C or G/H/E); the shortest path between D and H is 4 (going through C/A, but not through B or F/G).
+For example, in the network below, the length of the shortest path between F and B is 2 (going through A, but not C or G/H/E); the length of the shortest path between D and H is 4 (going through C/A, but not through B or F/G).
 
 <img src="assets/images/7.jpg" width="200px"/>
 
