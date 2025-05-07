@@ -172,7 +172,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "3",
+            "answer": "2",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -191,7 +191,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "2",
+            "answer": "3",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -210,7 +210,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "4",
+            "answer": "2",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -248,7 +248,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "2",
+            "answer": "4",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -267,7 +267,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "5",
+            "answer": "2",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -3197,8 +3197,8 @@
             "prolific",
             "introduction",
             "consent",
-            "training_prep",
             "training",
+            "training_prep",
             {
                 "order": "random",
                 "components": [
