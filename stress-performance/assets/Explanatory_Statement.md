@@ -21,7 +21,7 @@ You will receive training and examples on the relevant concepts in advance of th
 **What does the research involve?**  
 The aim of the study is to investigate how visual aspects of networks impact task performance. The results of this experiment can help guide the design of visualisations of networks, for ease of understanding. We focus on how visually balanced (or ‘stressed’) networks appear.
  
-You will be asked to look at a network and select the length of the shortest path between two highlighted nodes (shown in red). You will be given an explanation of networks and the concept of a shortest path before the experiment begins.
+You will be asked to <b>look at a network and select the length of the shortest path between two highlighted nodes</b> (shown in red). You will be given an explanation of networks and the concept of a shortest path before the experiment begins.
  
 You will be shown up to 27 drawings. The total experiment should not take more than 20 minutes.
  
