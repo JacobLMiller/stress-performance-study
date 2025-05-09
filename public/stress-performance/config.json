@@ -14,7 +14,6 @@
     },
     "uiConfig": {
         "contactEmail": "contact@revisit.dev",
-        "helpTextPath": "stress-performance/assets/help.md",
         "logoPath": "revisitAssets/monash.jpeg",
         "urlParticipantIdParam": "PROLIFIC_PID",
         "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://app.prolific.com/submissions/complete?cc=C1FIJHXG)",        
@@ -176,8 +175,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },
     "train2": {
         "baseComponent": "shortest-path",
@@ -191,7 +190,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "3",
+            "answer": "5",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -229,7 +228,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "4",
+            "answer": "2",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -248,7 +247,7 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "4",
+            "answer": "5",
             "id": "answer"
         }],
         "provideFeedback": true,
@@ -267,13 +266,85 @@
             ]
         },
         "correctAnswer": [{
-            "answer": "2",
+            "answer": "4",
             "id": "answer"
         }],
         "provideFeedback": true,
         "allowFailedTraining": false,
         "trainingAttempts": 6
     },        
+    "spl_fake_10_1": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                10,
+                1
+            ]
+        }
+    },        
+    "spl_fake_10_2": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                10,
+                2
+            ]
+        }
+    },        
+    "spl_fake_25_1": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                25,
+                1
+            ]
+        }
+    },        
+    "spl_fake_25_2": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                125,
+                2
+            ]
+        }
+    },        
+    "spl_fake_50_1": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                50,
+                1
+            ]
+        }
+    },        
+    "spl_fake_50_2": {
+        "baseComponent": "shortest-path",
+        "description": "Shortest path stimulus",
+        "instruction": "What is the length of the shortest path between the highlighted nodes?",
+        "parameters": {
+            "indices": [
+                "fake",
+                50,
+                2
+            ]
+        }
+    },            
     "spl_1_10_0": {
         "baseComponent": "shortest-path",
         "description": "Shortest path stimulus",
@@ -3219,45 +3290,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_1_10_0",
-                                    "spl_1_10_1",
-                                    "spl_1_10_2",
-                                    "spl_1_10_3",
-                                    "spl_1_10_4",
-                                    "spl_1_10_5",
-                                    "spl_1_10_6",
-                                    "spl_1_10_7",
-                                    "spl_1_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_1_10_0",
+                                            "spl_1_10_1",
+                                            "spl_1_10_2",
+                                            "spl_1_10_3",
+                                            "spl_1_10_4",
+                                            "spl_1_10_5",
+                                            "spl_1_10_6",
+                                            "spl_1_10_7",
+                                            "spl_1_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_1_25_0",
-                                    "spl_1_25_1",
-                                    "spl_1_25_2",
-                                    "spl_1_25_3",
-                                    "spl_1_25_4",
-                                    "spl_1_25_5",
-                                    "spl_1_25_6",
-                                    "spl_1_25_7",
-                                    "spl_1_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_1_25_0",
+                                            "spl_1_25_1",
+                                            "spl_1_25_2",
+                                            "spl_1_25_3",
+                                            "spl_1_25_4",
+                                            "spl_1_25_5",
+                                            "spl_1_25_6",
+                                            "spl_1_25_7",
+                                            "spl_1_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_1_50_0",
-                                    "spl_1_50_1",
-                                    "spl_1_50_2",
-                                    "spl_1_50_3",
-                                    "spl_1_50_4",
-                                    "spl_1_50_5",
-                                    "spl_1_50_6",
-                                    "spl_1_50_7",
-                                    "spl_1_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_1_50_0",
+                                            "spl_1_50_1",
+                                            "spl_1_50_2",
+                                            "spl_1_50_3",
+                                            "spl_1_50_4",
+                                            "spl_1_50_5",
+                                            "spl_1_50_6",
+                                            "spl_1_50_7",
+                                            "spl_1_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3275,45 +3367,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_2_10_0",
-                                    "spl_2_10_1",
-                                    "spl_2_10_2",
-                                    "spl_2_10_3",
-                                    "spl_2_10_4",
-                                    "spl_2_10_5",
-                                    "spl_2_10_6",
-                                    "spl_2_10_7",
-                                    "spl_2_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_2_10_0",
+                                            "spl_2_10_1",
+                                            "spl_2_10_2",
+                                            "spl_2_10_3",
+                                            "spl_2_10_4",
+                                            "spl_2_10_5",
+                                            "spl_2_10_6",
+                                            "spl_2_10_7",
+                                            "spl_2_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_2_25_0",
-                                    "spl_2_25_1",
-                                    "spl_2_25_2",
-                                    "spl_2_25_3",
-                                    "spl_2_25_4",
-                                    "spl_2_25_5",
-                                    "spl_2_25_6",
-                                    "spl_2_25_7",
-                                    "spl_2_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_2_25_0",
+                                            "spl_2_25_1",
+                                            "spl_2_25_2",
+                                            "spl_2_25_3",
+                                            "spl_2_25_4",
+                                            "spl_2_25_5",
+                                            "spl_2_25_6",
+                                            "spl_2_25_7",
+                                            "spl_2_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_2_50_0",
-                                    "spl_2_50_1",
-                                    "spl_2_50_2",
-                                    "spl_2_50_3",
-                                    "spl_2_50_4",
-                                    "spl_2_50_5",
-                                    "spl_2_50_6",
-                                    "spl_2_50_7",
-                                    "spl_2_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_2_50_0",
+                                            "spl_2_50_1",
+                                            "spl_2_50_2",
+                                            "spl_2_50_3",
+                                            "spl_2_50_4",
+                                            "spl_2_50_5",
+                                            "spl_2_50_6",
+                                            "spl_2_50_7",
+                                            "spl_2_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3331,45 +3444,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_3_10_0",
-                                    "spl_3_10_1",
-                                    "spl_3_10_2",
-                                    "spl_3_10_3",
-                                    "spl_3_10_4",
-                                    "spl_3_10_5",
-                                    "spl_3_10_6",
-                                    "spl_3_10_7",
-                                    "spl_3_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_3_10_0",
+                                            "spl_3_10_1",
+                                            "spl_3_10_2",
+                                            "spl_3_10_3",
+                                            "spl_3_10_4",
+                                            "spl_3_10_5",
+                                            "spl_3_10_6",
+                                            "spl_3_10_7",
+                                            "spl_3_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_3_25_0",
-                                    "spl_3_25_1",
-                                    "spl_3_25_2",
-                                    "spl_3_25_3",
-                                    "spl_3_25_4",
-                                    "spl_3_25_5",
-                                    "spl_3_25_6",
-                                    "spl_3_25_7",
-                                    "spl_3_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_3_25_0",
+                                            "spl_3_25_1",
+                                            "spl_3_25_2",
+                                            "spl_3_25_3",
+                                            "spl_3_25_4",
+                                            "spl_3_25_5",
+                                            "spl_3_25_6",
+                                            "spl_3_25_7",
+                                            "spl_3_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_3_50_0",
-                                    "spl_3_50_1",
-                                    "spl_3_50_2",
-                                    "spl_3_50_3",
-                                    "spl_3_50_4",
-                                    "spl_3_50_5",
-                                    "spl_3_50_6",
-                                    "spl_3_50_7",
-                                    "spl_3_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_3_50_0",
+                                            "spl_3_50_1",
+                                            "spl_3_50_2",
+                                            "spl_3_50_3",
+                                            "spl_3_50_4",
+                                            "spl_3_50_5",
+                                            "spl_3_50_6",
+                                            "spl_3_50_7",
+                                            "spl_3_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3387,45 +3521,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_4_10_0",
-                                    "spl_4_10_1",
-                                    "spl_4_10_2",
-                                    "spl_4_10_3",
-                                    "spl_4_10_4",
-                                    "spl_4_10_5",
-                                    "spl_4_10_6",
-                                    "spl_4_10_7",
-                                    "spl_4_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_4_10_0",
+                                            "spl_4_10_1",
+                                            "spl_4_10_2",
+                                            "spl_4_10_3",
+                                            "spl_4_10_4",
+                                            "spl_4_10_5",
+                                            "spl_4_10_6",
+                                            "spl_4_10_7",
+                                            "spl_4_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_4_25_0",
-                                    "spl_4_25_1",
-                                    "spl_4_25_2",
-                                    "spl_4_25_3",
-                                    "spl_4_25_4",
-                                    "spl_4_25_5",
-                                    "spl_4_25_6",
-                                    "spl_4_25_7",
-                                    "spl_4_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_4_25_0",
+                                            "spl_4_25_1",
+                                            "spl_4_25_2",
+                                            "spl_4_25_3",
+                                            "spl_4_25_4",
+                                            "spl_4_25_5",
+                                            "spl_4_25_6",
+                                            "spl_4_25_7",
+                                            "spl_4_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_4_50_0",
-                                    "spl_4_50_1",
-                                    "spl_4_50_2",
-                                    "spl_4_50_3",
-                                    "spl_4_50_4",
-                                    "spl_4_50_5",
-                                    "spl_4_50_6",
-                                    "spl_4_50_7",
-                                    "spl_4_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_4_50_0",
+                                            "spl_4_50_1",
+                                            "spl_4_50_2",
+                                            "spl_4_50_3",
+                                            "spl_4_50_4",
+                                            "spl_4_50_5",
+                                            "spl_4_50_6",
+                                            "spl_4_50_7",
+                                            "spl_4_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3443,45 +3598,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_5_10_0",
-                                    "spl_5_10_1",
-                                    "spl_5_10_2",
-                                    "spl_5_10_3",
-                                    "spl_5_10_4",
-                                    "spl_5_10_5",
-                                    "spl_5_10_6",
-                                    "spl_5_10_7",
-                                    "spl_5_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_5_10_0",
+                                            "spl_5_10_1",
+                                            "spl_5_10_2",
+                                            "spl_5_10_3",
+                                            "spl_5_10_4",
+                                            "spl_5_10_5",
+                                            "spl_5_10_6",
+                                            "spl_5_10_7",
+                                            "spl_5_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_5_25_0",
-                                    "spl_5_25_1",
-                                    "spl_5_25_2",
-                                    "spl_5_25_3",
-                                    "spl_5_25_4",
-                                    "spl_5_25_5",
-                                    "spl_5_25_6",
-                                    "spl_5_25_7",
-                                    "spl_5_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_5_25_0",
+                                            "spl_5_25_1",
+                                            "spl_5_25_2",
+                                            "spl_5_25_3",
+                                            "spl_5_25_4",
+                                            "spl_5_25_5",
+                                            "spl_5_25_6",
+                                            "spl_5_25_7",
+                                            "spl_5_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_5_50_0",
-                                    "spl_5_50_1",
-                                    "spl_5_50_2",
-                                    "spl_5_50_3",
-                                    "spl_5_50_4",
-                                    "spl_5_50_5",
-                                    "spl_5_50_6",
-                                    "spl_5_50_7",
-                                    "spl_5_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_5_50_0",
+                                            "spl_5_50_1",
+                                            "spl_5_50_2",
+                                            "spl_5_50_3",
+                                            "spl_5_50_4",
+                                            "spl_5_50_5",
+                                            "spl_5_50_6",
+                                            "spl_5_50_7",
+                                            "spl_5_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3499,45 +3675,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_6_10_0",
-                                    "spl_6_10_1",
-                                    "spl_6_10_2",
-                                    "spl_6_10_3",
-                                    "spl_6_10_4",
-                                    "spl_6_10_5",
-                                    "spl_6_10_6",
-                                    "spl_6_10_7",
-                                    "spl_6_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_6_10_0",
+                                            "spl_6_10_1",
+                                            "spl_6_10_2",
+                                            "spl_6_10_3",
+                                            "spl_6_10_4",
+                                            "spl_6_10_5",
+                                            "spl_6_10_6",
+                                            "spl_6_10_7",
+                                            "spl_6_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_6_25_0",
-                                    "spl_6_25_1",
-                                    "spl_6_25_2",
-                                    "spl_6_25_3",
-                                    "spl_6_25_4",
-                                    "spl_6_25_5",
-                                    "spl_6_25_6",
-                                    "spl_6_25_7",
-                                    "spl_6_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_6_25_0",
+                                            "spl_6_25_1",
+                                            "spl_6_25_2",
+                                            "spl_6_25_3",
+                                            "spl_6_25_4",
+                                            "spl_6_25_5",
+                                            "spl_6_25_6",
+                                            "spl_6_25_7",
+                                            "spl_6_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_6_50_0",
-                                    "spl_6_50_1",
-                                    "spl_6_50_2",
-                                    "spl_6_50_3",
-                                    "spl_6_50_4",
-                                    "spl_6_50_5",
-                                    "spl_6_50_6",
-                                    "spl_6_50_7",
-                                    "spl_6_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_6_50_0",
+                                            "spl_6_50_1",
+                                            "spl_6_50_2",
+                                            "spl_6_50_3",
+                                            "spl_6_50_4",
+                                            "spl_6_50_5",
+                                            "spl_6_50_6",
+                                            "spl_6_50_7",
+                                            "spl_6_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3555,45 +3752,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_7_10_0",
-                                    "spl_7_10_1",
-                                    "spl_7_10_2",
-                                    "spl_7_10_3",
-                                    "spl_7_10_4",
-                                    "spl_7_10_5",
-                                    "spl_7_10_6",
-                                    "spl_7_10_7",
-                                    "spl_7_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_7_10_0",
+                                            "spl_7_10_1",
+                                            "spl_7_10_2",
+                                            "spl_7_10_3",
+                                            "spl_7_10_4",
+                                            "spl_7_10_5",
+                                            "spl_7_10_6",
+                                            "spl_7_10_7",
+                                            "spl_7_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_7_25_0",
-                                    "spl_7_25_1",
-                                    "spl_7_25_2",
-                                    "spl_7_25_3",
-                                    "spl_7_25_4",
-                                    "spl_7_25_5",
-                                    "spl_7_25_6",
-                                    "spl_7_25_7",
-                                    "spl_7_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_7_25_0",
+                                            "spl_7_25_1",
+                                            "spl_7_25_2",
+                                            "spl_7_25_3",
+                                            "spl_7_25_4",
+                                            "spl_7_25_5",
+                                            "spl_7_25_6",
+                                            "spl_7_25_7",
+                                            "spl_7_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_7_50_0",
-                                    "spl_7_50_1",
-                                    "spl_7_50_2",
-                                    "spl_7_50_3",
-                                    "spl_7_50_4",
-                                    "spl_7_50_5",
-                                    "spl_7_50_6",
-                                    "spl_7_50_7",
-                                    "spl_7_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_7_50_0",
+                                            "spl_7_50_1",
+                                            "spl_7_50_2",
+                                            "spl_7_50_3",
+                                            "spl_7_50_4",
+                                            "spl_7_50_5",
+                                            "spl_7_50_6",
+                                            "spl_7_50_7",
+                                            "spl_7_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3611,45 +3829,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_8_10_0",
-                                    "spl_8_10_1",
-                                    "spl_8_10_2",
-                                    "spl_8_10_3",
-                                    "spl_8_10_4",
-                                    "spl_8_10_5",
-                                    "spl_8_10_6",
-                                    "spl_8_10_7",
-                                    "spl_8_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_8_10_0",
+                                            "spl_8_10_1",
+                                            "spl_8_10_2",
+                                            "spl_8_10_3",
+                                            "spl_8_10_4",
+                                            "spl_8_10_5",
+                                            "spl_8_10_6",
+                                            "spl_8_10_7",
+                                            "spl_8_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_8_25_0",
-                                    "spl_8_25_1",
-                                    "spl_8_25_2",
-                                    "spl_8_25_3",
-                                    "spl_8_25_4",
-                                    "spl_8_25_5",
-                                    "spl_8_25_6",
-                                    "spl_8_25_7",
-                                    "spl_8_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_8_25_0",
+                                            "spl_8_25_1",
+                                            "spl_8_25_2",
+                                            "spl_8_25_3",
+                                            "spl_8_25_4",
+                                            "spl_8_25_5",
+                                            "spl_8_25_6",
+                                            "spl_8_25_7",
+                                            "spl_8_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_8_50_0",
-                                    "spl_8_50_1",
-                                    "spl_8_50_2",
-                                    "spl_8_50_3",
-                                    "spl_8_50_4",
-                                    "spl_8_50_5",
-                                    "spl_8_50_6",
-                                    "spl_8_50_7",
-                                    "spl_8_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_8_50_0",
+                                            "spl_8_50_1",
+                                            "spl_8_50_2",
+                                            "spl_8_50_3",
+                                            "spl_8_50_4",
+                                            "spl_8_50_5",
+                                            "spl_8_50_6",
+                                            "spl_8_50_7",
+                                            "spl_8_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],
@@ -3667,45 +3906,66 @@
                         "order": "latinSquare",
                         "components": [
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_9_10_0",
-                                    "spl_9_10_1",
-                                    "spl_9_10_2",
-                                    "spl_9_10_3",
-                                    "spl_9_10_4",
-                                    "spl_9_10_5",
-                                    "spl_9_10_6",
-                                    "spl_9_10_7",
-                                    "spl_9_10_8"
+                                    "spl_fake_10_1",
+                                    "spl_fake_10_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_9_10_0",
+                                            "spl_9_10_1",
+                                            "spl_9_10_2",
+                                            "spl_9_10_3",
+                                            "spl_9_10_4",
+                                            "spl_9_10_5",
+                                            "spl_9_10_6",
+                                            "spl_9_10_7",
+                                            "spl_9_10_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_9_25_0",
-                                    "spl_9_25_1",
-                                    "spl_9_25_2",
-                                    "spl_9_25_3",
-                                    "spl_9_25_4",
-                                    "spl_9_25_5",
-                                    "spl_9_25_6",
-                                    "spl_9_25_7",
-                                    "spl_9_25_8"
+                                    "spl_fake_25_1",
+                                    "spl_fake_25_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_9_25_0",
+                                            "spl_9_25_1",
+                                            "spl_9_25_2",
+                                            "spl_9_25_3",
+                                            "spl_9_25_4",
+                                            "spl_9_25_5",
+                                            "spl_9_25_6",
+                                            "spl_9_25_7",
+                                            "spl_9_25_8"
+                                        ]
+                                    }
                                 ]
                             },
                             {
-                                "order": "random",
+                                "order": "fixed",
                                 "components": [
-                                    "spl_9_50_0",
-                                    "spl_9_50_1",
-                                    "spl_9_50_2",
-                                    "spl_9_50_3",
-                                    "spl_9_50_4",
-                                    "spl_9_50_5",
-                                    "spl_9_50_6",
-                                    "spl_9_50_7",
-                                    "spl_9_50_8"
+                                    "spl_fake_50_1",
+                                    "spl_fake_50_2",
+                                    {
+                                        "order": "random",
+                                        "components": [
+                                            "spl_9_50_0",
+                                            "spl_9_50_1",
+                                            "spl_9_50_2",
+                                            "spl_9_50_3",
+                                            "spl_9_50_4",
+                                            "spl_9_50_5",
+                                            "spl_9_50_6",
+                                            "spl_9_50_7",
+                                            "spl_9_50_8"
+                                        ]
+                                    }
                                 ]
                             }
                         ],

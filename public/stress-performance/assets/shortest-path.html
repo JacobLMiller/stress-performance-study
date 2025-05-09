@@ -24,7 +24,9 @@
         d3.json("data/orders.json").then(orderdata => {
             var img = document.getElementById("stimulus");
 
-            img.src = index === "training" ? orderdata[group][size] : orderdata[group][size][index];
+            img.src = index === "training" ? orderdata[group][size] 
+              : index === "fake" ? `SPL_Stimuli/n${size}-fake/n${size}_fake_${index}.png`
+              : orderdata[group][size][index];
 
             if(index === "training"){
               const buttons = d3.select(window.parent.document.body).selectAll("button");
