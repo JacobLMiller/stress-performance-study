@@ -194,8 +194,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },
     "train3": {
         "baseComponent": "shortest-path",
@@ -213,8 +213,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },
     "train4": {
         "baseComponent": "shortest-path",
@@ -232,8 +232,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },
     "train5": {
         "baseComponent": "shortest-path",
@@ -251,8 +251,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },
     "train6": {
         "baseComponent": "shortest-path",
@@ -270,8 +270,8 @@
             "id": "answer"
         }],
         "provideFeedback": true,
-        "allowFailedTraining": false,
-        "trainingAttempts": 6
+        "allowFailedTraining": true,
+        "trainingAttempts": 1
     },        
     "spl_fake_10_1": {
         "baseComponent": "shortest-path",
@@ -316,7 +316,7 @@
         "parameters": {
             "indices": [
                 "fake",
-                125,
+                25,
                 2
             ]
         }
