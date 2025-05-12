@@ -24,8 +24,10 @@
         d3.json("data/orders.json").then(orderdata => {
             var img = document.getElementById("stimulus");
 
+            console.log(data.indices)
+
             img.src = index === "training" ? orderdata[group][size] 
-              : index === "fake" ? `SPL_Stimuli/n${size}-fake/n${size}_fake_${index}.png`
+              : group === "fake" ? `SPL_Stimuli/n${size}-fake/n${size}_fake_${index}.png`
               : orderdata[group][size][index];
 
             if(index === "training"){
