@@ -23,3 +23,4 @@ For example, in the network below, the length of the shortest path between F and
 
 <img src="assets/images/7.jpg" width="200px"/>
 
+ Please don't spend too much time on each question. We expect each task to take around 15 seconds.

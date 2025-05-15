@@ -1,1 +1,1 @@
-This page is untimed. You may take a short break.
+This page is untimed. You may take a short break. Please don't spend too much time on each question. We expect each task to take around 15 seconds.
