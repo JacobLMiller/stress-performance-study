@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/revisit-studies/study/main/src/parser/StudyConfigSchema.json",
     "studyMetadata": {
-        "title": "Stress Performance Study",
+        "title": "Basic Questionnaire Study",
         "version": "pilot",
         "authors": [
             "Gavin Mooney", "Jacob Miller"
@@ -14,12 +14,11 @@
     },
     "uiConfig": {
         "contactEmail": "contact@revisit.dev",
-        "logoPath": "revisitAssets/monash.jpeg",
-        "urlParticipantIdParam": "PROLIFIC_PID",
-        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://app.prolific.com/submissions/complete?cc=C1FIJHXG)",        
+        "helpTextPath": "basic-questionnaire-study/assets/help.md",
+        "logoPath": "revisitAssets/revisitLogoSquare.svg",
         "withProgressBar": true,
         "autoDownloadStudy": false,
-        "sidebar": true  
+        "sidebar": true
     },
     "baseComponents": {
         "shortest-path": {
@@ -34,317 +33,21 @@
                     "options": ["2", "3", "4", "5", "I am unable to work this out"]
                 }
             ], 
-            "path": "stress-performance/assets/shortest-path.html", 
+            "path": "basic-questionnaire-study/assets/shortest-path.html", 
             "instructionLocation": "aboveStimulus"
         }
     },
     "components": {
-        "prolific": {
-            "type": "markdown",
-            "path": "stress-performance/assets/introduction.md",
-            "response": [
-                {
-                    "id": "prolificId",
-                    "prompt": "Please enter your Prolific ID",
-                    "required": true,
-                    "location": "belowStimulus",
-                    "type": "shortText",
-                    "placeholder": "Prolific ID",
-                    "paramCapture": "PROLIFIC_PID"
-                }
-            ]
-        },        
         "introduction": {
             "type": "markdown",
-            "path": "stress-performance/assets/Explanatory_Statement.md",
+            "path": "basic-questionnaire-study/assets/introduction.md",
             "response": []
         },
         "consent": {
             "type": "markdown",
-            "path": "stress-performance/assets/Explanatory_Statement3.md",
-            "response": []
-        },        
-        "training":{
-            "type": "markdown",
-            "path": "stress-performance/assets/definitions.md",
+            "path": "basic-questionnaire-study/assets/introduction.md",
             "response": []
         },
-        "break": {
-            "type": "markdown",
-            "path": "stress-performance/assets/break.md",
-            "response": []
-        },
-        "training_prep": {
-            "type": "markdown",
-            "path": "stress-performance/assets/prep.md",
-            "response": []
-        },
-        "demographics": {
-            "type": "questionnaire",
-            "response": [
-                {
-                    "id": "strategy",
-                    "prompt": "Please describe your overall strategy in answering.",
-                    "required": false,
-                    "location": "aboveStimulus",
-                    "type": "longText",
-                    "placeholder": "Please describe your strategy."
-                },
-                {
-                    "id": "confidence",
-                    "prompt": "How confident are you in your responses overall?",
-                    "required": true,
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "options": [
-                        "Not confident at all",
-                        "Not very confident", 
-                        "Somewhat confident", 
-                        "Very confident"
-                    ]
-                },
-                {
-                    "id": "difficulty",
-                    "prompt": "How difficult did you find this study?",
-                    "required": true,
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "options": [
-                        "Very difficult",
-                        "Difficult", 
-                        "Easy", 
-                        "Very easy"
-                    ]
-                },
-                {
-                    "id": "familiar",
-                    "prompt": "How familiar are you with network diagrams?",
-                    "required": true,
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "options": [
-                        "They are new to me",
-                        "Not very familiar", 
-                        "Somewhat familiar", 
-                        "Very familiar"
-                    ]
-                }, 
-                {
-                    "id": "age",
-                    "prompt": "What is your age group?",
-                    "required": false,
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "options": [
-                        "18-25",
-                        "26-35", 
-                        "36-45", 
-                        "46-55",
-                        "56-65",
-                        "66+"
-                    ]
-                },
-                {
-                    "id": "confidence",
-                    "prompt": "Please indicate your gender identity.",
-                    "required": false,
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "options": [
-                        "Male",
-                        "Female", 
-                        "Non-binary", 
-                        "Other/not listed"
-                    ]
-                }                                  
-            ]
-        },
-    "train1": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                0,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "2",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },
-    "train2": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                1,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "5",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },
-    "train3": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                2,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "2",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },
-    "train4": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                3,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "2",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },
-    "train5": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                4,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "5",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },
-    "train6": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "training",
-                5,
-                "training"
-            ]
-        },
-        "correctAnswer": [{
-            "answer": "4",
-            "id": "answer"
-        }],
-        "provideFeedback": true,
-        "allowFailedTraining": true,
-        "trainingAttempts": 1
-    },        
-    "spl_fake_10_1": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                10,
-                1
-            ]
-        }
-    },        
-    "spl_fake_10_2": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                10,
-                2
-            ]
-        }
-    },        
-    "spl_fake_25_1": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                25,
-                1
-            ]
-        }
-    },        
-    "spl_fake_25_2": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                25,
-                2
-            ]
-        }
-    },        
-    "spl_fake_50_1": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                50,
-                1
-            ]
-        }
-    },        
-    "spl_fake_50_2": {
-        "baseComponent": "shortest-path",
-        "description": "Shortest path stimulus",
-        "instruction": "What is the length of the shortest path between the highlighted nodes?",
-        "parameters": {
-            "indices": [
-                "fake",
-                50,
-                2
-            ]
-        }
-    },            
     "spl_1_10_0": {
         "baseComponent": "shortest-path",
         "description": "Shortest path stimulus",
@@ -3263,725 +2966,432 @@
     }
     },
     "sequence": {
-        "order": "fixed",
+        "order": "latinSquare",
+        "numSamples": 1,
         "components": [
-            "prolific",
-            "introduction",
-            "consent",
-            "training",
-            "training_prep",
             {
-                "order": "random",
-                "components": [
-                    "train1",
-                    "train2",
-                    "train3",
-                    "train4",
-                    "train5",
-                    "train6"
-                ]
-            },
-            "break",
-            {
-                "order": "latinSquare",
-                "numSamples": 1,
+                "order": "fixed",
                 "components": [
                     {
-                        "order": "latinSquare",
+                        "order": "random",
                         "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_1_10_0",
-                                            "spl_1_10_1",
-                                            "spl_1_10_2",
-                                            "spl_1_10_3",
-                                            "spl_1_10_4",
-                                            "spl_1_10_5",
-                                            "spl_1_10_6",
-                                            "spl_1_10_7",
-                                            "spl_1_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_1_25_0",
-                                            "spl_1_25_1",
-                                            "spl_1_25_2",
-                                            "spl_1_25_3",
-                                            "spl_1_25_4",
-                                            "spl_1_25_5",
-                                            "spl_1_25_6",
-                                            "spl_1_25_7",
-                                            "spl_1_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_1_50_0",
-                                            "spl_1_50_1",
-                                            "spl_1_50_2",
-                                            "spl_1_50_3",
-                                            "spl_1_50_4",
-                                            "spl_1_50_5",
-                                            "spl_1_50_6",
-                                            "spl_1_50_7",
-                                            "spl_1_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
+                            "spl_1_10_0",
+                            "spl_1_10_1",
+                            "spl_1_10_2",
+                            "spl_1_10_3",
+                            "spl_1_10_4",
+                            "spl_1_10_5",
+                            "spl_1_10_6",
+                            "spl_1_10_7",
+                            "spl_1_10_8"
                         ]
                     },
                     {
-                        "order": "latinSquare",
+                        "order": "random",
                         "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_2_10_0",
-                                            "spl_2_10_1",
-                                            "spl_2_10_2",
-                                            "spl_2_10_3",
-                                            "spl_2_10_4",
-                                            "spl_2_10_5",
-                                            "spl_2_10_6",
-                                            "spl_2_10_7",
-                                            "spl_2_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_2_25_0",
-                                            "spl_2_25_1",
-                                            "spl_2_25_2",
-                                            "spl_2_25_3",
-                                            "spl_2_25_4",
-                                            "spl_2_25_5",
-                                            "spl_2_25_6",
-                                            "spl_2_25_7",
-                                            "spl_2_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_2_50_0",
-                                            "spl_2_50_1",
-                                            "spl_2_50_2",
-                                            "spl_2_50_3",
-                                            "spl_2_50_4",
-                                            "spl_2_50_5",
-                                            "spl_2_50_6",
-                                            "spl_2_50_7",
-                                            "spl_2_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
+                            "spl_1_25_0",
+                            "spl_1_25_1",
+                            "spl_1_25_2",
+                            "spl_1_25_3",
+                            "spl_1_25_4",
+                            "spl_1_25_5",
+                            "spl_1_25_6",
+                            "spl_1_25_7",
+                            "spl_1_25_8"
                         ]
                     },
                     {
-                        "order": "latinSquare",
+                        "order": "random",
                         "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_3_10_0",
-                                            "spl_3_10_1",
-                                            "spl_3_10_2",
-                                            "spl_3_10_3",
-                                            "spl_3_10_4",
-                                            "spl_3_10_5",
-                                            "spl_3_10_6",
-                                            "spl_3_10_7",
-                                            "spl_3_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_3_25_0",
-                                            "spl_3_25_1",
-                                            "spl_3_25_2",
-                                            "spl_3_25_3",
-                                            "spl_3_25_4",
-                                            "spl_3_25_5",
-                                            "spl_3_25_6",
-                                            "spl_3_25_7",
-                                            "spl_3_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_3_50_0",
-                                            "spl_3_50_1",
-                                            "spl_3_50_2",
-                                            "spl_3_50_3",
-                                            "spl_3_50_4",
-                                            "spl_3_50_5",
-                                            "spl_3_50_6",
-                                            "spl_3_50_7",
-                                            "spl_3_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_4_10_0",
-                                            "spl_4_10_1",
-                                            "spl_4_10_2",
-                                            "spl_4_10_3",
-                                            "spl_4_10_4",
-                                            "spl_4_10_5",
-                                            "spl_4_10_6",
-                                            "spl_4_10_7",
-                                            "spl_4_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_4_25_0",
-                                            "spl_4_25_1",
-                                            "spl_4_25_2",
-                                            "spl_4_25_3",
-                                            "spl_4_25_4",
-                                            "spl_4_25_5",
-                                            "spl_4_25_6",
-                                            "spl_4_25_7",
-                                            "spl_4_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_4_50_0",
-                                            "spl_4_50_1",
-                                            "spl_4_50_2",
-                                            "spl_4_50_3",
-                                            "spl_4_50_4",
-                                            "spl_4_50_5",
-                                            "spl_4_50_6",
-                                            "spl_4_50_7",
-                                            "spl_4_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_5_10_0",
-                                            "spl_5_10_1",
-                                            "spl_5_10_2",
-                                            "spl_5_10_3",
-                                            "spl_5_10_4",
-                                            "spl_5_10_5",
-                                            "spl_5_10_6",
-                                            "spl_5_10_7",
-                                            "spl_5_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_5_25_0",
-                                            "spl_5_25_1",
-                                            "spl_5_25_2",
-                                            "spl_5_25_3",
-                                            "spl_5_25_4",
-                                            "spl_5_25_5",
-                                            "spl_5_25_6",
-                                            "spl_5_25_7",
-                                            "spl_5_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_5_50_0",
-                                            "spl_5_50_1",
-                                            "spl_5_50_2",
-                                            "spl_5_50_3",
-                                            "spl_5_50_4",
-                                            "spl_5_50_5",
-                                            "spl_5_50_6",
-                                            "spl_5_50_7",
-                                            "spl_5_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_6_10_0",
-                                            "spl_6_10_1",
-                                            "spl_6_10_2",
-                                            "spl_6_10_3",
-                                            "spl_6_10_4",
-                                            "spl_6_10_5",
-                                            "spl_6_10_6",
-                                            "spl_6_10_7",
-                                            "spl_6_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_6_25_0",
-                                            "spl_6_25_1",
-                                            "spl_6_25_2",
-                                            "spl_6_25_3",
-                                            "spl_6_25_4",
-                                            "spl_6_25_5",
-                                            "spl_6_25_6",
-                                            "spl_6_25_7",
-                                            "spl_6_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_6_50_0",
-                                            "spl_6_50_1",
-                                            "spl_6_50_2",
-                                            "spl_6_50_3",
-                                            "spl_6_50_4",
-                                            "spl_6_50_5",
-                                            "spl_6_50_6",
-                                            "spl_6_50_7",
-                                            "spl_6_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_7_10_0",
-                                            "spl_7_10_1",
-                                            "spl_7_10_2",
-                                            "spl_7_10_3",
-                                            "spl_7_10_4",
-                                            "spl_7_10_5",
-                                            "spl_7_10_6",
-                                            "spl_7_10_7",
-                                            "spl_7_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_7_25_0",
-                                            "spl_7_25_1",
-                                            "spl_7_25_2",
-                                            "spl_7_25_3",
-                                            "spl_7_25_4",
-                                            "spl_7_25_5",
-                                            "spl_7_25_6",
-                                            "spl_7_25_7",
-                                            "spl_7_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_7_50_0",
-                                            "spl_7_50_1",
-                                            "spl_7_50_2",
-                                            "spl_7_50_3",
-                                            "spl_7_50_4",
-                                            "spl_7_50_5",
-                                            "spl_7_50_6",
-                                            "spl_7_50_7",
-                                            "spl_7_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_8_10_0",
-                                            "spl_8_10_1",
-                                            "spl_8_10_2",
-                                            "spl_8_10_3",
-                                            "spl_8_10_4",
-                                            "spl_8_10_5",
-                                            "spl_8_10_6",
-                                            "spl_8_10_7",
-                                            "spl_8_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_8_25_0",
-                                            "spl_8_25_1",
-                                            "spl_8_25_2",
-                                            "spl_8_25_3",
-                                            "spl_8_25_4",
-                                            "spl_8_25_5",
-                                            "spl_8_25_6",
-                                            "spl_8_25_7",
-                                            "spl_8_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_8_50_0",
-                                            "spl_8_50_1",
-                                            "spl_8_50_2",
-                                            "spl_8_50_3",
-                                            "spl_8_50_4",
-                                            "spl_8_50_5",
-                                            "spl_8_50_6",
-                                            "spl_8_50_7",
-                                            "spl_8_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "order": "latinSquare",
-                        "components": [
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_10_1",
-                                    "spl_fake_10_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_9_10_0",
-                                            "spl_9_10_1",
-                                            "spl_9_10_2",
-                                            "spl_9_10_3",
-                                            "spl_9_10_4",
-                                            "spl_9_10_5",
-                                            "spl_9_10_6",
-                                            "spl_9_10_7",
-                                            "spl_9_10_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_25_1",
-                                    "spl_fake_25_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_9_25_0",
-                                            "spl_9_25_1",
-                                            "spl_9_25_2",
-                                            "spl_9_25_3",
-                                            "spl_9_25_4",
-                                            "spl_9_25_5",
-                                            "spl_9_25_6",
-                                            "spl_9_25_7",
-                                            "spl_9_25_8"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "order": "fixed",
-                                "components": [
-                                    "spl_fake_50_1",
-                                    "spl_fake_50_2",
-                                    {
-                                        "order": "random",
-                                        "components": [
-                                            "spl_9_50_0",
-                                            "spl_9_50_1",
-                                            "spl_9_50_2",
-                                            "spl_9_50_3",
-                                            "spl_9_50_4",
-                                            "spl_9_50_5",
-                                            "spl_9_50_6",
-                                            "spl_9_50_7",
-                                            "spl_9_50_8"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "interruptions": [
-                            {
-                                "spacing": 1,
-                                "firstLocation": 1,
-                                "components": [
-                                    "break"
-                                ]
-                            }
+                            "spl_1_50_0",
+                            "spl_1_50_1",
+                            "spl_1_50_2",
+                            "spl_1_50_3",
+                            "spl_1_50_4",
+                            "spl_1_50_5",
+                            "spl_1_50_6",
+                            "spl_1_50_7",
+                            "spl_1_50_8"
                         ]
                     }
                 ]
             },
-            "demographics"
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_2_10_0",
+                            "spl_2_10_1",
+                            "spl_2_10_2",
+                            "spl_2_10_3",
+                            "spl_2_10_4",
+                            "spl_2_10_5",
+                            "spl_2_10_6",
+                            "spl_2_10_7",
+                            "spl_2_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_2_25_0",
+                            "spl_2_25_1",
+                            "spl_2_25_2",
+                            "spl_2_25_3",
+                            "spl_2_25_4",
+                            "spl_2_25_5",
+                            "spl_2_25_6",
+                            "spl_2_25_7",
+                            "spl_2_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_2_50_0",
+                            "spl_2_50_1",
+                            "spl_2_50_2",
+                            "spl_2_50_3",
+                            "spl_2_50_4",
+                            "spl_2_50_5",
+                            "spl_2_50_6",
+                            "spl_2_50_7",
+                            "spl_2_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_3_10_0",
+                            "spl_3_10_1",
+                            "spl_3_10_2",
+                            "spl_3_10_3",
+                            "spl_3_10_4",
+                            "spl_3_10_5",
+                            "spl_3_10_6",
+                            "spl_3_10_7",
+                            "spl_3_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_3_25_0",
+                            "spl_3_25_1",
+                            "spl_3_25_2",
+                            "spl_3_25_3",
+                            "spl_3_25_4",
+                            "spl_3_25_5",
+                            "spl_3_25_6",
+                            "spl_3_25_7",
+                            "spl_3_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_3_50_0",
+                            "spl_3_50_1",
+                            "spl_3_50_2",
+                            "spl_3_50_3",
+                            "spl_3_50_4",
+                            "spl_3_50_5",
+                            "spl_3_50_6",
+                            "spl_3_50_7",
+                            "spl_3_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_4_10_0",
+                            "spl_4_10_1",
+                            "spl_4_10_2",
+                            "spl_4_10_3",
+                            "spl_4_10_4",
+                            "spl_4_10_5",
+                            "spl_4_10_6",
+                            "spl_4_10_7",
+                            "spl_4_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_4_25_0",
+                            "spl_4_25_1",
+                            "spl_4_25_2",
+                            "spl_4_25_3",
+                            "spl_4_25_4",
+                            "spl_4_25_5",
+                            "spl_4_25_6",
+                            "spl_4_25_7",
+                            "spl_4_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_4_50_0",
+                            "spl_4_50_1",
+                            "spl_4_50_2",
+                            "spl_4_50_3",
+                            "spl_4_50_4",
+                            "spl_4_50_5",
+                            "spl_4_50_6",
+                            "spl_4_50_7",
+                            "spl_4_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_5_10_0",
+                            "spl_5_10_1",
+                            "spl_5_10_2",
+                            "spl_5_10_3",
+                            "spl_5_10_4",
+                            "spl_5_10_5",
+                            "spl_5_10_6",
+                            "spl_5_10_7",
+                            "spl_5_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_5_25_0",
+                            "spl_5_25_1",
+                            "spl_5_25_2",
+                            "spl_5_25_3",
+                            "spl_5_25_4",
+                            "spl_5_25_5",
+                            "spl_5_25_6",
+                            "spl_5_25_7",
+                            "spl_5_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_5_50_0",
+                            "spl_5_50_1",
+                            "spl_5_50_2",
+                            "spl_5_50_3",
+                            "spl_5_50_4",
+                            "spl_5_50_5",
+                            "spl_5_50_6",
+                            "spl_5_50_7",
+                            "spl_5_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_6_10_0",
+                            "spl_6_10_1",
+                            "spl_6_10_2",
+                            "spl_6_10_3",
+                            "spl_6_10_4",
+                            "spl_6_10_5",
+                            "spl_6_10_6",
+                            "spl_6_10_7",
+                            "spl_6_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_6_25_0",
+                            "spl_6_25_1",
+                            "spl_6_25_2",
+                            "spl_6_25_3",
+                            "spl_6_25_4",
+                            "spl_6_25_5",
+                            "spl_6_25_6",
+                            "spl_6_25_7",
+                            "spl_6_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_6_50_0",
+                            "spl_6_50_1",
+                            "spl_6_50_2",
+                            "spl_6_50_3",
+                            "spl_6_50_4",
+                            "spl_6_50_5",
+                            "spl_6_50_6",
+                            "spl_6_50_7",
+                            "spl_6_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_7_10_0",
+                            "spl_7_10_1",
+                            "spl_7_10_2",
+                            "spl_7_10_3",
+                            "spl_7_10_4",
+                            "spl_7_10_5",
+                            "spl_7_10_6",
+                            "spl_7_10_7",
+                            "spl_7_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_7_25_0",
+                            "spl_7_25_1",
+                            "spl_7_25_2",
+                            "spl_7_25_3",
+                            "spl_7_25_4",
+                            "spl_7_25_5",
+                            "spl_7_25_6",
+                            "spl_7_25_7",
+                            "spl_7_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_7_50_0",
+                            "spl_7_50_1",
+                            "spl_7_50_2",
+                            "spl_7_50_3",
+                            "spl_7_50_4",
+                            "spl_7_50_5",
+                            "spl_7_50_6",
+                            "spl_7_50_7",
+                            "spl_7_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_8_10_0",
+                            "spl_8_10_1",
+                            "spl_8_10_2",
+                            "spl_8_10_3",
+                            "spl_8_10_4",
+                            "spl_8_10_5",
+                            "spl_8_10_6",
+                            "spl_8_10_7",
+                            "spl_8_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_8_25_0",
+                            "spl_8_25_1",
+                            "spl_8_25_2",
+                            "spl_8_25_3",
+                            "spl_8_25_4",
+                            "spl_8_25_5",
+                            "spl_8_25_6",
+                            "spl_8_25_7",
+                            "spl_8_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_8_50_0",
+                            "spl_8_50_1",
+                            "spl_8_50_2",
+                            "spl_8_50_3",
+                            "spl_8_50_4",
+                            "spl_8_50_5",
+                            "spl_8_50_6",
+                            "spl_8_50_7",
+                            "spl_8_50_8"
+                        ]
+                    }
+                ]
+            },
+            {
+                "order": "fixed",
+                "components": [
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_9_10_0",
+                            "spl_9_10_1",
+                            "spl_9_10_2",
+                            "spl_9_10_3",
+                            "spl_9_10_4",
+                            "spl_9_10_5",
+                            "spl_9_10_6",
+                            "spl_9_10_7",
+                            "spl_9_10_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_9_25_0",
+                            "spl_9_25_1",
+                            "spl_9_25_2",
+                            "spl_9_25_3",
+                            "spl_9_25_4",
+                            "spl_9_25_5",
+                            "spl_9_25_6",
+                            "spl_9_25_7",
+                            "spl_9_25_8"
+                        ]
+                    },
+                    {
+                        "order": "random",
+                        "components": [
+                            "spl_9_50_0",
+                            "spl_9_50_1",
+                            "spl_9_50_2",
+                            "spl_9_50_3",
+                            "spl_9_50_4",
+                            "spl_9_50_5",
+                            "spl_9_50_6",
+                            "spl_9_50_7",
+                            "spl_9_50_8"
+                        ]
+                    }
+                ]
+            }
         ]
     }
 }
