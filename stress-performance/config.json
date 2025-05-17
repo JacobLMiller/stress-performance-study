@@ -132,7 +132,7 @@
                 {
                     "id": "age",
                     "prompt": "What is your age group?",
-                    "required": false,
+                    "required": true,
                     "location": "aboveStimulus",
                     "type": "radio",
                     "options": [
@@ -141,20 +141,22 @@
                         "36-45", 
                         "46-55",
                         "56-65",
-                        "66+"
+                        "66+", 
+                        "I'd rather not say"
                     ]
                 },
                 {
                     "id": "confidence",
                     "prompt": "Please indicate your gender identity.",
-                    "required": false,
+                    "required": true,
                     "location": "aboveStimulus",
                     "type": "radio",
                     "options": [
                         "Male",
                         "Female", 
                         "Non-binary", 
-                        "Other/not listed"
+                        "Other/not listed",
+                        "I'd rather not say"
                     ]
                 }                                  
             ]
