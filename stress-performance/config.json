@@ -146,7 +146,7 @@
                     ]
                 },
                 {
-                    "id": "confidence",
+                    "id": "gender",
                     "prompt": "Please indicate your gender identity.",
                     "required": true,
                     "location": "aboveStimulus",
