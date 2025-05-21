@@ -9,7 +9,11 @@
     "library-previs",
     "library-sus",
     "library-vlat",
-    "stress-performance"
+    "stress-performance",
+    "stress-performance6",
+    "stress-performance7",
+    "stress-performance8",
+    "stress-performance9"    
 
   ],
   "configs": {
@@ -48,6 +52,22 @@
     "stress-performance": {
       "path": "stress-performance/config.json",
       "test": false
-    }
+    },
+    "stress-performance6":{
+      "path": "stress-performance/config-index6.json", 
+      "test": false
+    },
+    "stress-performance7":{
+      "path": "stress-performance/config-index7.json", 
+      "test": false
+    },
+    "stress-performance8":{
+      "path": "stress-performance/config-index8.json", 
+      "test": false
+    },
+    "stress-performance9":{
+      "path": "stress-performance/config-index9.json", 
+      "test": false
+    }            
   }
 }
