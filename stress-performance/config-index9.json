@@ -130,7 +130,7 @@
                     ]
                 }, 
                 {
-                    "id": "age",
+                    "id": "gender",
                     "prompt": "What is your age group?",
                     "required": false,
                     "location": "aboveStimulus",
