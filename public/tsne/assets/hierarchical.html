@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>t-SNE</title>
+  <style>
+    .container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #f0f0f0;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+
+    .main {
+      flex: 1;
+      max-width: 1000px;
+      background-color: #ffffff;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: #ffffff;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="../../revisitUtilities/revisit-communicate.js"></script>
+  <script src="js/hsne.js"></script>
+</head>
+<body>
+ <div class="container">
+    <div class="sidebar" id="sidebar">
+    <div class="w3-light-grey w3-round" style="border: 1px solid black;">
+        <div id="progressbar" class="w3-container w3-round w3-blue" style="width:0%; height: 30px;"></div>
+        <div id="progressbar-text" style="width: 440px; position: absolute; transform: translate(20px, -25px);"></div>
+      </div>    
+    <div id="drillcontainer"></div>
+    <div id="popstack" style="display:none;"></div>        
+    </div>
+    <div class="main">
+      <div id="loading"></div>
+      <svg id="scatterplot" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </div>
+  <script>
+
+    Revisit.onDataReceive(parameters => {
+
+      let dataname = parameters.dataset;
+      
+      fetch(`https://hyperbolic.algo.cit.tum.de/dataset/${dataname}`).then(response => response.json()).then(jsdata => {
+          let Scatter = new HSNE('#scatterplot');
+          Scatter.addData(jsdata.nodes,null,jsdata.fname);
+          Scatter.process();
+          Scatter.draw();
+          Scatter.interact();        
+      })
+
+      // d3.json("data/blobs.json").then( data => {
+      //     let Scatter = new FlatScatter("#scatterplot", data);
+
+      //     Scatter.process();
+      // }); 
+    });
+
+
+
+  </script>
+</body>
+</html>

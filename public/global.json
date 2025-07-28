@@ -13,8 +13,8 @@
     "stress-performance6",
     "stress-performance7",
     "stress-performance8",
-    "stress-performance9"    
-
+    "stress-performance9",
+    "tsne"
   ],
   "configs": {
     "library-beauvis": {
@@ -68,6 +68,10 @@
     "stress-performance9":{
       "path": "stress-performance/config-index9.json", 
       "test": false
-    }            
+    },
+    "tsne":{
+      "path": "tsne/config.json",
+      "test": true
+    }
   }
 }

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.1/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Hyperbolic t-SNE study",
+    "version": "development",
+    "authors": [
+      "Jacob Miller"
+    ],
+    "date": "2025-02-05",
+    "description": "Pilot for hyperbolic study.",
+    "organizations": [
+      "Technical University of Munich"
+    ]
+  },
+  "uiConfig": {
+    "contactEmail": "contact@revisit.dev",
+    "helpTextPath": "tutorial/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "sidebar": true
+  },
+  "baseComponents": {     
+    "tsne": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/flat.html", 
+            "instructionLocation": "aboveStimulus"
+        }, 
+        "hsne": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/hierarchical.html", 
+            "instructionLocation": "sidebar"
+        },
+        "hyperbolic": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/hyperbolic.html", 
+            "instructionLocation": "sidebar"
+        }           
+},
+  "components": {
+    "blobs-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs"
+        }
+    },
+    "cnae9-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "cnae9"
+        }
+    },
+    "coil20-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "fashion-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "har-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "har"
+        }
+    }  ,    
+    "blobs-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs"
+        }
+    },
+    "cnae9-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "cnae9"
+        }
+    },
+    "coil20-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "fashion-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "har-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "har"
+        }
+    },
+    "blobs-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs"
+        }
+    },
+    "cnae9-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "cnae9"
+        }
+    },
+    "coil20-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "fashion-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "har-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "har"
+        }
+    }    
+},
+  "sequence": {
+    "order": "fixed",
+    "components": [
+        "blobs-tsne",
+        "cnae9-tsne",
+        "coil20-tsne",
+        "fashion-tsne",
+        "har-tsne",      
+        "blobs-hsne",
+        "cnae9-hsne",
+        "coil20-hsne",
+        "fashion-hsne",
+        "har-hsne",
+        "blobs-hyperbolic",
+        "cnae9-hyperbolic",
+        "coil20-hyperbolic",
+        "fashion-hyperbolic",
+        "har-hyperbolic"          
+    ]
+  }
+}
