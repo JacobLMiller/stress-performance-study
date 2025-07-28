@@ -1,0 +1,224 @@
+#main {
+    padding: 0;
+    margin: 0;
+    height:90vh;
+    width:100%;
+}
+
+#main-body {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.graticules {
+      stroke: grey;
+      stroke-width: .2;
+      fill: none;
+}
+
+.links{
+        fill: none;
+}
+
+
+.row svg {
+    background-color: white;
+    width: 100%;
+    height: 90vh;
+    margin-left: auto;   
+}
+
+/* g {
+    transition: transform 0.5s linear;
+} */
+
+#sidebar {
+    background-color: #F8F9FA;
+}
+
+#sidebar-info{
+    overflow-y: auto;
+    height: 100%;
+}
+
+#secondary {
+    background-color: #F8F9FA;
+    padding: 0;
+    margin: 0;
+    height:10vh;
+    width:100%;
+}
+
+.question {
+    margin-top: 2%;
+    font-weight: 500;
+}
+
+.option-container {
+    display: inline;
+}
+
+.option-container > * {
+    margin: 0.2em;
+}
+
+.question-options {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.submit-button, .reset-button {
+    background-color: #000000;
+    border: 0;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none #5b5d5f solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.466), 0 1px 2px 0 rgba(255, 255, 255, 0.651);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+.submit-button:hover, .reset-button:hover {
+    background-color: rgb(27, 27, 27);
+}
+  
+.submit-button:focus, .reset-button:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+  
+.submit-button:focus-visible, .reset-button:focus-visible {
+    box-shadow: none;
+}
+
+.reset-button {
+    margin-left: 85%;
+    padding: .5rem;
+}
+
+.submit-button {
+  /* width: 5%; */
+  margin: 3% 3%;
+  padding: .75rem;
+}
+
+.intro-title {
+    text-align: center;
+    margin: 1em;
+}
+
+.feedback-con {
+    margin-top: 2%;
+    text-align: center;
+}
+
+.feedback-label {
+    margin: 7% 0 2% 0;
+}
+
+.feedback-input {
+    width: 70%;
+    height: 12vh;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.85em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+}
+
+.feedback-input:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+#feedback-submit {
+    width: auto;
+    height: 5vh;
+}
+
+form .statement {
+    display:block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 30px 0 0 4.25%;
+    margin-bottom:10px;
+  }
+  form .likert {
+    list-style:none;
+    width:100%;
+    margin:0;
+    padding:0 0 35px;
+    display:block;
+    border-bottom:2px solid #efefef;
+  }
+  form .likert:last-of-type {border-bottom:0;}
+  form .likert:before {
+    content: '';
+    position:relative;
+    top:11px;
+    left:9.5%;
+    display:block;
+    background-color:#efefef;
+    height:4px;
+    width:78%;
+  }
+  form .likert li {
+    display:inline-block;
+    width:19%;
+    text-align:center;
+    vertical-align: top;
+  }
+  form .likert li input[type=radio] {
+    display:block;
+    position:relative;
+    top:0;
+    left:50%;
+    margin-left:-6px;
+    
+  }
+  form .likert li input[type=checkbox] {
+    display:block;
+    position:relative;
+    top:0;
+    left:50%;
+    margin-left:-6px;
+    
+  }
+  form .likert li label {width:100%;}
+
+.end {
+    font-size: 2em;
+    font-weight: bold;
+}
+#non-responsive {
+    display: none;
+}
+
+@media only screen and (max-width: 800px)  { 
+    #main-body {
+        display: none;
+    }
+    #non-responsive {
+        display: block;
+    }
+ }

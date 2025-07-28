@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>t-SNE</title>
+  <style>
+    svg {
+      width: 800px;
+      height: 600px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="../../revisitUtilities/revisit-communicate.js"></script>
+
+  <script src="js/flat-tsne.js"></script>
+</head>
+<body>
+  <svg id="scatterplot"></svg>
+
+  <script>
+    Revisit.onDataReceive(parameters => {
+      let dataname = parameters.dataset;
+      d3.json(`data/${dataname}.json`).then( data => {
+          let Scatter = new FlatScatter("#scatterplot", data);
+
+          Scatter.process();
+      }); 
+    });
+
+  </script>
+</body>
+</html>
