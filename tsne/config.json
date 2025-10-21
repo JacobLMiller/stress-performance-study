@@ -76,12 +76,12 @@
             "dataset": "blobs"
         }
     },
-    "cnae9-tsne":{
+    "planaria-tsne":{
         "baseComponent": "tsne",
         "description": "t-SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "cnae9"
+            "dataset": "planaria"
         }
     },
     "coil20-tsne":{
@@ -100,12 +100,12 @@
             "dataset": "fashion_mnist"
         }
     },
-    "har-tsne":{
+    "myeloid-tsne":{
         "baseComponent": "tsne",
         "description": "t-SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "har"
+            "dataset": "myeloid"
         }
     }  ,    
     "blobs-hsne":{
@@ -116,12 +116,12 @@
             "dataset": "blobs"
         }
     },
-    "cnae9-hsne":{
+    "planaria-hsne":{
         "baseComponent": "hsne",
         "description": "Hierarchical SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "cnae9"
+            "dataset": "planaria"
         }
     },
     "coil20-hsne":{
@@ -140,12 +140,12 @@
             "dataset": "fashion_mnist"
         }
     },
-    "har-hsne":{
+    "myeloid-hsne":{
         "baseComponent": "hsne",
         "description": "Hierarchical SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "har"
+            "dataset": "myeloid"
         }
     },
     "blobs-hyperbolic":{
@@ -156,12 +156,12 @@
             "dataset": "blobs"
         }
     },
-    "cnae9-hyperbolic":{
+    "planaria-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "cnae9"
+            "dataset": "planaria"
         }
     },
     "coil20-hyperbolic":{
@@ -180,12 +180,12 @@
             "dataset": "fashion_mnist"
         }
     },
-    "har-hyperbolic":{
+    "myeloid-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "har"
+            "dataset": "myeloid"
         }
     }    
 },
@@ -193,20 +193,20 @@
     "order": "fixed",
     "components": [
         "blobs-tsne",
-        "cnae9-tsne",
+        "planaria-tsne",
         "coil20-tsne",
         "fashion-tsne",
-        "har-tsne",      
+        "myeloid-tsne",      
         "blobs-hsne",
-        "cnae9-hsne",
+        "planaria-hsne",
         "coil20-hsne",
         "fashion-hsne",
-        "har-hsne",
+        "myeloid-hsne",
         "blobs-hyperbolic",
-        "cnae9-hyperbolic",
+        "planaria-hyperbolic",
         "coil20-hyperbolic",
         "fashion-hyperbolic",
-        "har-hyperbolic"          
+        "myeloid-hyperbolic"          
     ]
   }
 }
