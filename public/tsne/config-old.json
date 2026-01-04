@@ -1,0 +1,405 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.1/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Hyperbolic t-SNE study",
+    "version": "development",
+    "authors": [
+      "Jacob Miller"
+    ],
+    "date": "2025-02-05",
+    "description": "Pilot for hyperbolic study.",
+    "organizations": [
+      "Technical University of Munich"
+    ]
+  },
+  "uiConfig": {
+    "contactEmail": "contact@revisit.dev",
+    "helpTextPath": "tutorial/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "sidebar": true
+  },
+  "baseComponents": {     
+    "tsne": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/flat.html", 
+            "instructionLocation": "sidebar"
+        }, 
+    "tsne-point": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "Select one of the following:",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                }
+            ],                 
+            "path": "tsne/assets/flat.html", 
+            "instructionLocation": "sidebar"
+        },         
+        "hsne": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/hierarchical.html", 
+            "instructionLocation": "sidebar"
+        },
+        "hsne-point": {
+                "type": "website", 
+                "response": [
+                    {
+                        "id": "answer", 
+                        "prompt": "Select one of the following:",
+                        "required": true, 
+                        "location": "sidebar",
+                        "type": "radio",
+                        "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                    }
+                ],                 
+                "path": "tsne/assets/hierarchical.html", 
+                "instructionLocation": "sidebar"
+            },               
+        "hyperbolic": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "How many clusters do you observe in the given data?",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "tsne/assets/hyperbolic.html", 
+            "instructionLocation": "sidebar"
+        },
+        "hyperbolic-point": {
+                "type": "website", 
+                "response": [
+                    {
+                        "id": "answer", 
+                        "prompt": "Select one of the following:",
+                        "required": true, 
+                        "location": "sidebar",
+                        "type": "radio",
+                        "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                    }
+                ],                 
+                "path": "tsne/assets/hyperbolic.html", 
+                "instructionLocation": "sidebar"
+            }   
+},
+  "components": {
+    "blobs-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs", 
+            "qtype": "clusters"
+        }
+    },
+    "blobs-tsne-point":{
+        "baseComponent": "tsne-point",
+        "description": "t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "blobs", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 0
+        }
+    },
+    "planaria-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "planaria"
+        }
+    },
+    "planaria-tsne-point":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "planaria", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 2
+        }
+    },    
+    "coil20-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "coil20-tsne-point":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "coil20", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 1
+        }
+    },
+    "fashion-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "fashion-tsne-point":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "fashion", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 0
+        }
+    },
+    "myeloid-tsne":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "myeloid"
+        }
+    }  ,    
+    "myeloid-tsne-point":{
+        "baseComponent": "tsne",
+        "description": "t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "myeloid", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 3
+        }
+    },    
+    "blobs-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs"
+        }
+    },
+    "blobs-hsne-point":{
+        "baseComponent": "hsne-point",
+        "description": "Hierarchical SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "blobs", 
+            "qtype": "point", 
+            "id": "33", 
+            "correct": 3
+        }
+    },    
+    "planaria-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "planaria"
+        }
+    },
+    "coil20-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "fashion-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "myeloid-hsne":{
+        "baseComponent": "hsne",
+        "description": "Hierarchical SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "myeloid"
+        }
+    },
+    "blobs-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "blobs"
+        }
+    },
+    "blobs-hyperbolic-point":{
+        "baseComponent": "hyperbolic-point",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "blobs", 
+            "qtype": "point",
+            "id": 33, 
+            "correct": 0
+        }
+    },    
+    "planaria-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "planaria"
+        }
+    },
+    "planaria-hyperbolic-point":{
+        "baseComponent": "hyperbolic-point",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "planaria", 
+            "qtype": "point",
+            "id": 33, 
+            "correct": 0
+        }
+    },        
+    "coil20-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "coil20"
+        }
+    },
+    "coil20-hyperbolic-point":{
+        "baseComponent": "hyperbolic-point",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "coil20", 
+            "qtype": "point",
+            "id": 33, 
+            "correct": 0
+        }
+    },        
+    "fashion-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "fashion_mnist"
+        }
+    },
+    "fashion-hyperbolic-point":{
+        "baseComponent": "hyperbolic-point",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "fashion_mnist", 
+            "qtype": "point",
+            "id": 33, 
+            "correct": 0
+        }
+    },        
+    "myeloid-hyperbolic":{
+        "baseComponent": "hyperbolic",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "How many clusters do you observe in the given data?",
+        "parameters": {
+            "dataset": "myeloid"
+        }
+    }, 
+    "myeloid-hyperbolic-point":{
+        "baseComponent": "hyperbolic-point",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "What is the shape of the non-circle point?",
+        "parameters": {
+            "dataset": "myeloid", 
+            "qtype": "point",
+            "id": 33, 
+            "correct": 2
+        }
+    },      
+    "ueq-s":{
+        "description": "User quality feedback",
+        "instruction": "Please repond to the following questions",
+        "path": "tsne/assets/ueq.md",
+        "type": "markdown",
+        "response": [
+            {
+                "id": "ueq1", 
+                "prompt": "How many clusters do you observe in the given data?",
+                "required": true, 
+                "type": "radio",
+                "options": ["2", "3", "4", "5", "I am unable to work this out"]
+            }
+        ]
+    }
+},
+  "sequence": {
+    "order": "fixed",
+    "components": [
+        "blobs-tsne",
+        "blobs-tsne-point",
+        "planaria-tsne",
+        "planaria-tsne-point",
+        "coil20-tsne",
+        "coil20-tsne-point",
+        "fashion-tsne",
+        "fashion-tsne-point",
+        "myeloid-tsne",     
+        "myeloid-tsne-point", 
+        "blobs-hsne",
+        "blobs-hsne-point",
+        "planaria-hsne",
+        "coil20-hsne",
+        "fashion-hsne",
+        "myeloid-hsne",
+        "blobs-hyperbolic",
+        "blobs-hyperbolic-point",
+        "planaria-hyperbolic",
+        "planaria-hyperbolic-point",
+        "coil20-hyperbolic",
+        "coil20-hyperbolic-point",        
+        "fashion-hyperbolic",
+        "fashion-hyperbolic-point",        
+        "myeloid-hyperbolic",
+        "myeloid-hyperbolic-point"          
+    ]
+  }
+}

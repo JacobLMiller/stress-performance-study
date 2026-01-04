@@ -15,6 +15,51 @@ const HoverState = {
     "HOVER_NEIGHBOR": 2
 };
 
+function drawTriangle(ctx, x, y, size) {
+  const h = size * Math.sqrt(3) / 2;
+  ctx.beginPath();
+  ctx.moveTo(x, y - h/2);
+  ctx.lineTo(x - size/2, y + h/2);
+  ctx.lineTo(x + size/2, y + h/2);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+}
+
+function drawDiamond(ctx, x, y, size) {
+  const s = size / 2;
+  ctx.beginPath();
+  ctx.moveTo(x, y - s);
+  ctx.lineTo(x + s, y);
+  ctx.lineTo(x, y + s);
+  ctx.lineTo(x - s, y);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawCross(ctx, x, y, size, thickness = size / 3) {
+  const t = thickness / 2, s = size / 2;
+  ctx.beginPath();
+  // vertical bar
+  ctx.rect(x - t, y - s, thickness, size);
+  // horizontal bar
+  ctx.rect(x - s, y - t, size, thickness);
+  ctx.fill();
+}
+
+function drawStar(ctx, x, y, r) {
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const angle = (Math.PI / 5) * i;
+    const radius = i % 2 === 0 ? r : r * 0.4;
+    ctx.lineTo(x + radius * Math.sin(angle),
+               y - radius * Math.cos(angle));
+  }
+  ctx.closePath();
+  ctx.fill();
+}
+
+
 //Math helpers ---------------------------------------------------
 
 function l2_norm_hyperbol(v){
@@ -82,14 +127,14 @@ function polarToLobachevsky(pt){
 //---------------------------------------------------------------------------------------
 
 class HyperbolicVis {
-    #nodeRadiusLarge = 0.15;
+    #nodeRadiusLarge = 0.02;
     #nodeRadiusSmall = 0.02;
     #stepSize = 10;
 
     #colors = ["#4e79a7","#f28e2c","#e15759","#76b7b2","#59a14f","#edc949","#af7aa1","#ff9da7","#9c755f","#bab0ab"];
     #margin = {top: 15, bottom: 15, left:15, right:15};
 
-    constructor(divId,nodes,links, center_node) {
+    constructor(divId,nodes,links, center_node,parameters) {
         var canvas = HyperbolicCanvas.create(divId);
         var selection = d3.select(canvas);
         console.log(canvas);
@@ -122,6 +167,20 @@ class HyperbolicVis {
         this.appendInteraction("start");
 
         this.center_node = center_node;
+
+        this.qtype = parameters.qtype;
+        this.qid   = Number(parameters.id);
+        this.correctindex = Number(parameters.correct);
+
+        if (this.qtype === "point"){
+            const shapes = [
+                (ctx, x, y, s) => drawTriangle(ctx, x, y, s),
+                (ctx, x, y, s) => drawDiamond(ctx, x, y, s),
+                (ctx, x, y, s) => drawCross(ctx, x, y, s),
+                (ctx, x, y, s) => drawStar(ctx, x, y, s)
+            ]; 
+            this.shape = shapes[this.correctindex];
+        }        
     }
 
     addData(nodes,links,fname){
@@ -202,7 +261,7 @@ class HyperbolicVis {
 
         this.nodes.forEach(n => {
             ctx.strokeStyle = "black";
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.3;
             // ctx.globalAlpha = 0.25;
             let radius = this.#nodeRadiusSmall;
             if (this.hoverNodes.includes(`node_${n.id}`)){
@@ -216,7 +275,8 @@ class HyperbolicVis {
                 }else if(n.hovered === HoverState.HOVER_NEIGHBOR){
                     ctx.fillStyle = "#DC267F";
                 }else{
-                    ctx.fillStyle = this.#colors[n.class];
+                    // ctx.fillStyle = this.#colors[n.class];
+                    ctx.fillStyle = this.#colors[0];
                 }
             }
             
@@ -225,9 +285,22 @@ class HyperbolicVis {
                 n.hpnt, radius / this.curScale.a
             );
 
-            this.hcanvas.fill(
-                this.hcanvas.pathForHyperbolic(n.hcircle)
-            );
+            if (n.id !== this.qid){
+                this.hcanvas.fillAndStroke(
+                    this.hcanvas.pathForHyperbolic(n.hcircle)
+                );
+            }else{
+                const center = n.hcircle.getEuclideanCenter();
+                console.log(this.hcanvas.getCanvasPixelCoords(center))
+                let [x,y] = this.hcanvas.getCanvasPixelCoords(center);
+                this.shape(
+                    ctx,
+                    x,
+                    y,
+                    15
+                );
+            
+            }
         });
 
         ctx.lineWidth = 3;

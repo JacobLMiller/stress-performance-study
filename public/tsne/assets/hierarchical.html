@@ -12,7 +12,7 @@
     }
 
     .sidebar {
-      width: 200px;
+      width: 100px;
       background-color: #f0f0f0;
       padding: 2px;
       box-sizing: border-box;
@@ -40,10 +40,6 @@
 <body>
  <div class="container">
     <div class="sidebar" id="sidebar">
-    <div class="w3-light-grey w3-round" style="border: 1px solid black;">
-        <div id="progressbar" class="w3-container w3-round w3-blue" style="width:0%; height: 30px;"></div>
-        <div id="progressbar-text" style="width: 440px; position: absolute; transform: translate(20px, -25px);"></div>
-      </div>    
     <div id="drillcontainer"></div>
     <div id="popstack" style="display:none;"></div>        
     </div>
@@ -59,7 +55,7 @@
       let dataname = parameters.dataset;
       
       fetch(`https://hyperbolic.algo.cit.tum.de/dataset/${dataname}`).then(response => response.json()).then(jsdata => {
-          let Scatter = new HSNE('#scatterplot');
+          let Scatter = new HSNE('#scatterplot', parameters);
           Scatter.addData(jsdata.nodes,null,jsdata.fname);
           Scatter.process();
           Scatter.draw();

@@ -24,7 +24,7 @@
     Revisit.onDataReceive(parameters => {
       let dataname = parameters.dataset;
       d3.json(`data/${dataname}.json`).then( data => {
-          let Scatter = new FlatScatter("#scatterplot", data);
+          let Scatter = new FlatScatter("#scatterplot", data, parameters);
 
           Scatter.process();
       }); 
