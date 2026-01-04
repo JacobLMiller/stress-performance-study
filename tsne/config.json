@@ -28,14 +28,29 @@
                     "id": "answer", 
                     "prompt": "How many clusters do you observe in the given data?",
                     "required": true, 
-                    "location": "belowStimulus",
+                    "location": "sidebar",
                     "type": "radio",
                     "options": ["2", "3", "4", "5", "I am unable to work this out"]
                 }
             ], 
             "path": "tsne/assets/flat.html", 
-            "instructionLocation": "aboveStimulus"
+            "instructionLocation": "sidebar"
         }, 
+    "tsne-point": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "Select one of the following:",
+                    "required": true, 
+                    "location": "sidebar",
+                    "type": "radio",
+                    "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                }
+            ],                 
+            "path": "tsne/assets/flat.html", 
+            "instructionLocation": "sidebar"
+        },         
         "hsne": {
             "type": "website", 
             "response": [
@@ -51,6 +66,21 @@
             "path": "tsne/assets/hierarchical.html", 
             "instructionLocation": "sidebar"
         },
+        "hsne-point": {
+                "type": "website", 
+                "response": [
+                    {
+                        "id": "answer", 
+                        "prompt": "Select one of the following:",
+                        "required": true, 
+                        "location": "sidebar",
+                        "type": "radio",
+                        "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                    }
+                ],                 
+                "path": "tsne/assets/hierarchical.html", 
+                "instructionLocation": "sidebar"
+            },               
         "hyperbolic": {
             "type": "website", 
             "response": [
@@ -65,15 +95,342 @@
             ], 
             "path": "tsne/assets/hyperbolic.html", 
             "instructionLocation": "sidebar"
-        }           
+        },
+        "hyperbolic-point": {
+                "type": "website", 
+                "response": [
+                    {
+                        "id": "answer", 
+                        "prompt": "Select one of the following:",
+                        "required": true, 
+                        "location": "sidebar",
+                        "type": "radio",
+                        "options": ["Triangle", "Cross", "Diamond", "Star", "I am unable to work this out"]
+                    }
+                ],                 
+                "path": "tsne/assets/hyperbolic.html", 
+                "instructionLocation": "sidebar"
+            }, 
+ "intro": {
+    "type": "markdown",
+    "path": "tsne/assets/intro.md",
+    "response": []
+  },
+  "consent": {
+    "type": "markdown",
+    "path": "tsne/assets/consent.md",
+    "response": [
+      {
+        "id": "consentApproval",
+        "prompt": "I consent to participate in this study.",
+        "required": true,
+        "type": "radio",
+        "options": ["yes", "no"]
+      }
+    ]
+  },
+  "demographics": {
+    "type": "markdown",
+    "path": "tsne/assets/demographics.md",
+            "response": [
+                {
+                    "id": "familiar",
+                    "prompt": "How familiar are you with visualization?",
+                    "required": true,
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "It is new to me",
+                        "Not very familiar", 
+                        "Somewhat familiar", 
+                        "Very familiar"
+                    ]
+                }, 
+                {
+                    "id": "familiar2",
+                    "prompt": "How familiar are you with non-Euclidean geometry?",
+                    "required": true,
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "It is new to me",
+                        "Not very familiar", 
+                        "Somewhat familiar", 
+                        "Very familiar"
+                    ]
+                },
+                {
+                    "id": "familiar3",
+                    "prompt": "How familiar are you with visual analytics software (e.g. Tableu)?",
+                    "required": true,
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "It is new to me",
+                        "Not very familiar", 
+                        "Somewhat familiar", 
+                        "Very familiar", 
+                        "I use them in my work"
+                    ]
+                },                
+                {
+                    "id": "age",
+                    "prompt": "What is your age group?",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "18-25",
+                        "26-35", 
+                        "36-45", 
+                        "46-55",
+                        "56-65",
+                        "66+", 
+                        "I'd rather not say"
+                    ]
+                },
+                {
+                    "id": "gender",
+                    "prompt": "Please indicate your gender identity.",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "Male",
+                        "Female", 
+                        "Non-binary", 
+                        "Other/not listed",
+                        "I'd rather not say"
+                    ]
+                }                                  
+            ]
+  },
+  "hsne-description": {
+    "type": "website",
+    "path": "tsne/assets/hierarchical.html",
+    "instructionLocation": "sidebar",
+    "response": [
+      {
+        "id": "answer",
+        "prompt": "Briefly describe what you see (clusters, separations, outliers, structure).",
+        "required": true,
+        "location": "sidebar",
+        "type": "longText"
+      }
+    ]
+  },
+  "hyperbolic-description": {
+    "type": "website",
+    "path": "tsne/assets/hyperbolic.html",
+    "instructionLocation": "sidebar",
+    "response": [
+      {
+        "id": "answer",
+        "prompt": "Briefly describe what you see (clusters, separations, outliers, structure).",
+        "required": true,
+        "location": "sidebar",
+        "type": "longText"
+      }
+    ]
+  },
+
+  "mini-ueq": {
+    "type": "markdown",
+    "path": "tsne/assets/ueq.md",
+    "response": [
+    {
+        "id": "ueqs_1",
+        "prompt": "The visualization felt obstructive ⟷ supportive",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_2",
+        "prompt": "The visualization felt complicated ⟷ easy to use",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_3",
+        "prompt": "The visualization felt inefficient ⟷ efficient",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_4",
+        "prompt": "The visualization felt confusing ⟷ clear",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_5",
+        "prompt": "Using the visualization felt boring ⟷ exciting",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_6",
+        "prompt": "Using the visualization felt not interesting ⟷ interesting",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_7",
+        "prompt": "The visualization felt conventional ⟷ inventive",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+        "id": "ueqs_8",
+        "prompt": "The visualization felt usual ⟷ cutting-edge",
+        "required": true,
+        "type": "radio",
+        "options": ["1", "2", "3", "4", "5", "6", "7"]
+    }
+    ]
+
+  }            
 },
   "components": {
+    "introduction": { "baseComponent": "intro" },
+    "consent-page": { "baseComponent": "consent" },
+    "demographics-page": { "baseComponent": "demographics" },
+    "training-page-hsne": {
+        "type": "markdown", 
+        "path": "tsne/assets/training-hsne.md", 
+        "response": []
+    },
+    "training-page-hyperbolic": {
+        "type": "markdown", 
+        "path": "tsne/assets/training-hyperbolic.md", 
+        "response": []
+    },    
+    "ueq-hsne": {
+        "baseComponent": "mini-ueq"
+    }, 
+    "ueq-hyperbolic":
+    {
+        "baseComponent": "mini-ueq"
+    },
+
+    "practice_hsne": {
+        "baseComponent": "hsne",
+        "description": "Practice: Hierarchical SNE",
+        "instruction": "Practice interacting with the visualization. No answers are recorded.",
+        "parameters": {
+            "dataset": "practice",
+            "qtype": "practice"
+        },
+        "response": [
+            {
+            "id": "practice_ack",
+            "prompt": "I have explored the visualization and am ready to continue.",
+            "required": true,
+            "type": "radio",
+            "options": ["Continue"],
+            "location": "sidebar"
+            }
+        ]
+    },
+    "practice_hyperbolic": {
+        "baseComponent": "hyperbolic",
+        "description": "Practice: Hyperbolic t-SNE",
+        "instruction": "Practice interacting with the visualization. No answers are recorded.",
+        "parameters": {
+            "dataset": "practice",
+            "qtype": "practice"
+        },
+        "response": [
+            {
+            "id": "practice_ack",
+            "prompt": "I have explored the visualization and am ready to continue.",
+            "required": true,
+            "type": "radio",
+            "options": ["Continue"],
+            "location": "sidebar"
+            }
+        ]
+    },    
+
+
+    "blobs-hsne-description": {
+        "baseComponent": "hsne-description",
+        "description": "Hierarchical SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "blobs", "qtype": "description" }
+    },
+    "planaria-hsne-description": {
+        "baseComponent": "hsne-description",
+        "description": "Hierarchical SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "planaria", "qtype": "description" }
+    },
+    "coil20-hsne-description": {
+        "baseComponent": "hsne-description",
+        "description": "Hierarchical SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "coil20", "qtype": "description" }
+    },
+    "fashion-hsne-description": {
+        "baseComponent": "hsne-description",
+        "description": "Hierarchical SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "fashion_mnist", "qtype": "description" }
+    },
+    "myeloid-hsne-description": {
+        "baseComponent": "hsne-description",
+        "description": "Hierarchical SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "myeloid", "qtype": "description" }
+    },
+
+    "blobs-hyperbolic-description": {
+        "baseComponent": "hyperbolic-description",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "blobs", "qtype": "description" }
+    },
+    "planaria-hyperbolic-description": {
+        "baseComponent": "hyperbolic-description",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "planaria", "qtype": "description" }
+    },
+    "coil20-hyperbolic-description": {
+        "baseComponent": "hyperbolic-description",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "coil20", "qtype": "description" }
+    },
+    "fashion-hyperbolic-description": {
+        "baseComponent": "hyperbolic-description",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "fashion_mnist", "qtype": "description" }
+    },
+    "myeloid-hyperbolic-description": {
+        "baseComponent": "hyperbolic-description",
+        "description": "Hyperbolic t-SNE",
+        "instruction": "Describe the structure you observe.",
+        "parameters": { "dataset": "myeloid", "qtype": "description" }
+    },
+
+    "mini-ueq-page": { "baseComponent": "mini-ueq" },
+
     "blobs-tsne":{
         "baseComponent": "tsne",
         "description": "t-SNE",
         "instruction": "How many clusters do you observe in the given data?",
         "parameters": {
-            "dataset": "blobs"
+            "dataset": "blobs", 
+            "qtype": "clusters"
         }
     },
     "planaria-tsne":{
@@ -84,6 +441,7 @@
             "dataset": "planaria"
         }
     },
+
     "coil20-tsne":{
         "baseComponent": "tsne",
         "description": "t-SNE",
@@ -108,6 +466,7 @@
             "dataset": "myeloid"
         }
     }  ,    
+
     "blobs-hsne":{
         "baseComponent": "hsne",
         "description": "Hierarchical SNE",
@@ -116,6 +475,7 @@
             "dataset": "blobs"
         }
     },
+
     "planaria-hsne":{
         "baseComponent": "hsne",
         "description": "Hierarchical SNE",
@@ -156,6 +516,7 @@
             "dataset": "blobs"
         }
     },
+
     "planaria-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
@@ -164,6 +525,7 @@
             "dataset": "planaria"
         }
     },
+
     "coil20-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
@@ -172,6 +534,7 @@
             "dataset": "coil20"
         }
     },
+
     "fashion-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
@@ -180,6 +543,7 @@
             "dataset": "fashion_mnist"
         }
     },
+
     "myeloid-hyperbolic":{
         "baseComponent": "hyperbolic",
         "description": "Hyperbolic t-SNE",
@@ -187,26 +551,304 @@
         "parameters": {
             "dataset": "myeloid"
         }
-    }    
+    }, 
+
+  "blobs-tsne-point": {
+    "baseComponent": "tsne-point",
+    "description": "t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "blobs",
+      "qtype": "point",
+      "id": [204, 2253, 2006, 1828, 1143],
+      "correct": 0
+    }
+  },
+  "planaria-tsne-point": {
+    "baseComponent": "tsne",
+    "description": "t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "planaria",
+      "qtype": "point",
+      "id": [3039, 12449, 3169, 11763, 11270],
+      "correct": 0
+    }
+  },
+  "coil20-tsne-point": {
+    "baseComponent": "tsne",
+    "description": "t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "coil20",
+      "qtype": "point",
+      "id": [476, 1034, 1232, 54, 1149],
+      "correct": 1
+    }
+  },
+  "fashion-tsne-point": {
+    "baseComponent": "tsne",
+    "description": "t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "fashion_mnist",
+      "qtype": "point",
+      "id": [2932, 2661, 2872, 2232, 1718],
+      "correct": 1
+    }
+  },
+  "myeloid-tsne-point": {
+    "baseComponent": "tsne",
+    "description": "t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "myeloid",
+      "qtype": "point",
+      "id": [348, 284, 159, 220, 344],
+      "correct": 3
+    }
+  },
+
+  "blobs-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "blobs",
+      "qtype": "point",
+      "id": [204, 2253, 2006, 1828, 1143],
+      "correct": 0
+    }
+  },
+
+  "blobs-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "blobs",
+      "qtype": "point",
+      "id": [204, 2253, 2006, 1828, 1143],
+      "correct": 0
+    }
+  },
+  "planaria-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "planaria",
+      "qtype": "point",
+      "id": [3039, 12449, 3169, 11763, 11270],
+      "correct": 0
+    }
+  },
+  "coil20-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "coil20",
+      "qtype": "point",
+      "id": [476, 1034, 1232, 54, 1149],
+      "correct": 1
+    }
+  },
+  "fashion-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "fashion_mnist",
+      "qtype": "point",
+      "id": [2932, 2661, 2872, 2232, 1718],
+      "correct": 1
+    }
+  },
+  "myeloid-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "myeloid",
+      "qtype": "point",
+      "id": [348, 284, 159, 220, 344],
+      "correct": 3
+    }
+  },
+
+  "cnae9-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "cnae9",
+      "qtype": "point",
+      "id": [178, 864, 65, 61, 191],
+      "correct": 0
+    }
+  },
+  "coil20-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "coil20",
+      "qtype": "point",
+      "id": [476, 1034, 1232, 54, 1149],
+      "correct": 1
+    }
+  },
+  "fashion-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "fashion_mnist",
+      "qtype": "point",
+      "id": [2932, 2661, 2872, 2232, 1718],
+      "correct": 1
+    }
+  },
+  "har-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "har",
+      "qtype": "point",
+      "id": [459, 603, 284, 6, 163],
+      "correct": 2
+    }
+  },
+  "myeloid-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "myeloid",
+      "qtype": "point",
+      "id": [348, 284, 159, 220, 344],
+      "correct": 3
+    }
+  },
+  "planaria-hsne-point": {
+    "baseComponent": "hsne-point",
+    "description": "Hierarchical SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "planaria",
+      "qtype": "point",
+      "id": [3039, 12449, 3169, 11763, 11270],
+      "correct": 0
+    }
+  },
+
+  "cnae9-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "cnae9",
+      "qtype": "point",
+      "id": [178, 864, 65, 61, 191],
+      "correct": 0
+    }
+  },
+  "har-hyperbolic-point": {
+    "baseComponent": "hyperbolic-point",
+    "description": "Hyperbolic t-SNE",
+    "instruction": "What is the shape of the non-circle point?",
+    "parameters": {
+      "dataset": "har",
+      "qtype": "point",
+      "id": [459, 603, 284, 6, 163],
+      "correct": 2
+    }
+  },
+
+    "ueq-s":{
+        "description": "User quality feedback",
+        "instruction": "Please repond to the following questions",
+        "path": "tsne/assets/ueq.md",
+        "type": "markdown",
+        "response": [
+            {
+                "id": "ueq1", 
+                "prompt": "How many clusters do you observe in the given data?",
+                "required": true, 
+                "type": "radio",
+                "options": ["2", "3", "4", "5", "I am unable to work this out"]
+            }
+        ]
+    }
+    
 },
-  "sequence": {
-    "order": "fixed",
-    "components": [
-        "blobs-tsne",
-        "planaria-tsne",
-        "coil20-tsne",
-        "fashion-tsne",
-        "myeloid-tsne",      
-        "blobs-hsne",
-        "planaria-hsne",
-        "coil20-hsne",
-        "fashion-hsne",
-        "myeloid-hsne",
-        "blobs-hyperbolic",
-        "planaria-hyperbolic",
-        "coil20-hyperbolic",
-        "fashion-hyperbolic",
-        "myeloid-hyperbolic"          
-    ]
-  }
+"sequence": {
+  "order": "fixed",
+  "components": [
+    "introduction",
+        {
+      "order": "fixed",
+      "components": ["consent-page"],
+      "skip": [
+        {
+          "name": "consent-page",
+          "check": "response",
+          "responseId": "consentApproval",
+          "comparison": "notEqual",
+          "value": "yes",
+          "to": "end"
+        }
+      ]
+    },    
+    "demographics-page",
+    {
+      "order": "latinSquare",
+      "components": [
+        {
+          "order": "fixed", 
+          "components": 
+          [
+            "training-page-hsne", 
+            "practice_hsne",
+            { 
+                "order": "random",
+                "components": [
+                    { "order": "fixed", "components": ["blobs-hsne", "blobs-hsne-point", "blobs-hsne-description"] },
+                    { "order": "fixed", "components": ["coil20-hsne", "coil20-hsne-point", "coil20-hsne-description"] },
+                    { "order": "fixed", "components": ["fashion-hsne", "fashion-hsne-point", "fashion-hsne-description"] },
+                    { "order": "fixed", "components": ["myeloid-hsne", "myeloid-hsne-point", "myeloid-hsne-description"] },
+                    { "order": "fixed", "components": ["planaria-hsne", "planaria-hsne-point", "planaria-hsne-description"] }
+                ]},
+            "ueq-hsne"
+            ]
+        },
+        {
+          "order": "fixed", 
+          "components": 
+          [
+            "training-page-hyperbolic", 
+            "practice_hyperbolic",
+            {
+                "order": "random",
+                "components": [
+                    { "order": "fixed", "components": ["blobs-hyperbolic", "blobs-hyperbolic-point", "blobs-hyperbolic-description"] },
+                    { "order": "fixed", "components": ["coil20-hyperbolic", "coil20-hyperbolic-point", "coil20-hyperbolic-description"] },
+                    { "order": "fixed", "components": ["fashion-hyperbolic", "fashion-hyperbolic-point", "fashion-hyperbolic-description"] },
+                    { "order": "fixed", "components": ["myeloid-hyperbolic", "myeloid-hyperbolic-point", "myeloid-hyperbolic-description"] },
+                    { "order": "fixed", "components": ["planaria-hyperbolic", "planaria-hyperbolic-point", "planaria-hyperbolic-description"] }
+                ]
+            },
+            "ueq-hyperbolic"
+          ]
+          
+        }
+      ]
+    }
+  ]
+}
+
+
+
 }

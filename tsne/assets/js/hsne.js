@@ -1,3 +1,4 @@
+
 class HSNE {
     #nodeRadiusLarge = 15;
     #nodeRadiusSmall = 5;
@@ -5,7 +6,7 @@ class HSNE {
     #colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]    
     #margin = {top: 15, bottom: 15, left:15, right:15};
 
-    constructor(svgID) {
+    constructor(svgID, parameters) {
         this.svg = d3.select(svgID);
 
         this.loading = document.getElementById("loading");
@@ -52,6 +53,20 @@ class HSNE {
 
         this.loading.style.left = `${this.width / 2}px`;
         this.loading.style.top = `${this.height / 2}px`;
+
+        this.qtype = parameters.qtype;
+        this.qid   = parameters.id;
+        this.correctindex = Number(parameters.correct);
+
+        if (this.qtype === "point"){
+            const shapes = [
+                d3.symbolTriangle, 
+                d3.symbolCross, 
+                d3.symbolDiamond, 
+                d3.symbolStar
+            ]; 
+            this.shape = shapes[this.correctindex];
+        }        
 
 
     }
@@ -131,32 +146,102 @@ class HSNE {
         
     }
 
-    draw(){
-        // if(this.stack.length > 0){
-        //     document.getElementById("popstack").style.display = 'block';
-        // }else{
-        //     document.getElementById("popstack").style.display = 'none';
-        // }
-        this.layer1.selectAll(".nodes")
-            .data(this.nodes, d => d.id)
+    // draw(){
+    //     // if(this.stack.length > 0){
+    //     //     document.getElementById("popstack").style.display = 'block';
+    //     // }else{
+    //     //     document.getElementById("popstack").style.display = 'none';
+    //     // }
+    //     const symbol = d3.symbol().size(60)
+    //     this.layer1.selectAll(".nodes")
+    //         .data(this.nodes, d => d.id)
+    //         .join(
+    //             enter => enter.append("path")
+    //                 .attr("class", "nodes")
+    //                 .attr("d", d => symbol.type(
+    //                         d.id === this.qid ? this.shape : d3.symbolCircle
+    //                     )()
+    //                 )
+    //                 .attr("stroke", "black")
+    //                 // .attr("fill", d => d.class ? this.#colors[Math.abs(d.class)] : this.#colors[0])
+    //                 .attr("fill", this.#colors[0])
+    //                 .attr("transform", d => `translate(${d.x}, ${d.y})`),
+    //                 // .attr("cx", d => d.x)
+    //                 // .attr("cy", d => d.y)
+    //                 // .attr("r", d => d.r),
+    //             update => update
+    //                 .attr("cx", d => d.x)
+    //                 .attr("cy", d => d.y)
+    //                 .attr("fill", this.#colors[0]),
+    //                 // .attr("fill", d => d.class ? this.#colors[Math.abs(d.class)] : this.#colors[0]), 
+    //             exit => exit.remove()
+    //         )
+    //         .attr("id", d => {
+    //             return "node_" + d.id;
+    //         });
+    // }
+
+    draw() {
+        const symbol = d3.symbol().size(60);
+
+        // Normalize qids: allow scalar or array; store as Set of numbers
+        const qids = new Set(
+            (Array.isArray(this.qid) ? this.qid : [this.qid])
+            .filter(v => v !== undefined && v !== null)
+            .map(v => Number(v))
+        );
+
+        const nodes = this.layer1
+            .selectAll("path.nodes")
+            .data(this.nodes, d => d.id)   // join key: stable identifier
             .join(
-                enter => enter.append("circle")
-                    .attr("class", "nodes")
-                    .attr("stroke", "black")
-                    .attr("fill", d => d.class ? this.#colors[Math.abs(d.class)] : this.#colors[0])
-                    .attr("cx", d => d.x)
-                    .attr("cy", d => d.y)
-                    .attr("r", d => d.r),
-                update => update
-                    .attr("cx", d => d.x)
-                    .attr("cy", d => d.y)
-                    .attr("fill", d => d.class ? this.#colors[Math.abs(d.class)] : this.#colors[0]), 
-                exit => exit.remove()
+            enter => enter.append("path")
+                .attr("class", "nodes")
+                .attr("stroke", d => qids.has(Number(d.id)) ? "black" : "black")
+                .attr("stroke-width", d => qids.has(Number(d.id) ? 2 : 1))
+                .attr("fill", this.#colors[0]),
+            update => update,
+            exit => exit.remove()
             )
-            .attr("id", d => {
-                return "node_" + d.id;
-            });
-    }
+            // set DOM id consistently for both enter and update
+            .attr("id", d => `node_${d.id}`)
+            // update position for paths
+            .attr("transform", d => `translate(${d.x}, ${d.y})`)
+            // update symbol (in case qids/shape changes)
+            .attr("d", d => symbol.type(
+            qids.has(Number(d.id)) ? this.shape : d3.symbolCircle
+            )());
+
+        // const nodes = this.layer1.selectAll("g.node")
+        // .data(this.nodes, d => d.id)
+        // .join(enter => {
+        //     const g = enter.append("g").attr("class", "node");
+        //     g.append("path").attr("class", "halo");
+        //     g.append("path").attr("class", "mark");
+        //     return g;
+        // });
+
+        // nodes.attr("transform", d => `translate(${d.x},${d.y})`);
+
+        // nodes.select("path.halo")
+        // .attr("d", d => symbol.type(qids.has(+d.id) ? this.shape : d3.symbolCircle)())
+        // .attr("fill", "none")
+        // .attr("stroke", "white")
+        // .attr("stroke-width", d => qids.has(+d.id) ? 6 : 0)
+        // .attr("opacity", 0.95);
+
+        // nodes.select("path.mark")
+        // .attr("d", d => symbol.type(qids.has(+d.id) ? this.shape : d3.symbolCircle)())
+        // .attr("fill", this.#colors[0])
+        // .attr("stroke", "black")
+        // .attr("stroke-width", 1.5);
+
+        // raise the whole group for special points
+        nodes.filter(d => qids.has(+d.id)).raise();
+        this.brushLayer?.raise();
+
+
+        }
 
     addZoom(){
         this.layer1.attr("transform", d3.zoomIdentity);
@@ -244,23 +329,43 @@ class HSNE {
         this.makeCenter(xmove-c_node.x, ymove-c_node.y, 1, 0);     
     }
 
-    addBrush(){
+    addBrush() {
+        // Create (or reuse) a brush layer that stays above nodes
+        if (!this.brushLayer) {
+            this.brushLayer = this.svg.append("g")
+            .attr("class", "brush-layer");
+
+            // Optional but recommended: ensure the brush can start anywhere
+            // and doesn't lose events to other elements.
+            this.brushLayer.append("rect")
+            .attr("class", "brush-hit")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", this.width)
+            .attr("height", this.height)
+            .style("fill", "transparent")
+            .style("pointer-events", "all");
+        }
+
         const brush = d3.brush()
-            .extent([[0,0], [this.width, this.height]])
-            // .on("start", () => console.log("brush start"))
-            // .on("end", () => console.log("brush end"))
-            .on("brush", e => {
-                if (!e.selection) return;
+            .extent([[0, 0], [this.width, this.height]])
+            .on("brush", (e) => {
+            if (!e.selection) return;
 
-                const [[x0,y0], [x1,y1]] = e.selection;
-                this.layer1.selectAll(".nodes")
-                    .classed("hover-node", d => {
-                        return x0 <= d.x && d.x <= x1 && y0 <= d.y && d.y <= y1;
-                });
+            const [[x0, y0], [x1, y1]] = e.selection;
+
+            this.layer1.selectAll(".nodes")
+                .classed("hover-node", d =>
+                x0 <= d.x && d.x <= x1 && y0 <= d.y && d.y <= y1
+                );
             });
-        this.svg.call(brush);
-    }
 
+        // Attach brush to the brush layer (not the root svg)
+        this.brushLayer.call(brush);
+
+        // Keep brush overlay above nodes (important if you raise nodes elsewhere)
+        this.brushLayer.raise();
+    }
     interact(id_list){
         this.layer1.on("click", () => {
             this.appendInteraction("pan");

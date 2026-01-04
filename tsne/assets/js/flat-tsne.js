@@ -9,7 +9,9 @@ class FlatScatter {
         'right': 15
     }
 
-    constructor(svgid, nodes){
+    //Change the color first
+
+    constructor(svgid, nodes, parameters){
         this.svg = d3.select(svgid);
         this.layer1 = this.svg.append("g");
 
@@ -18,6 +20,20 @@ class FlatScatter {
         let bbox = this.svg.node().getBoundingClientRect();
         this.width = bbox.width;
         this.height = bbox.height;
+
+        this.qtype = parameters.qtype;
+        this.qid   = Number(parameters.id);
+        this.correctindex = Number(parameters.correct);
+
+        if (this.qtype === "point"){
+            const shapes = [
+                d3.symbolTriangle, 
+                d3.symbolCross, 
+                d3.symbolDiamond, 
+                d3.symbolStar
+            ]; 
+            this.shape = shapes[this.correctindex];
+        }
     }
 
     process(){
@@ -36,15 +52,22 @@ class FlatScatter {
     }
 
     draw(){
+        const symbol = d3.symbol().size(20);
         this.layer1.selectAll(".node")
             .data(this.nodes, d => d.id)
             .join(
-                enter => enter.append('circle')
+                enter => enter.append('path')
                     .attr("class", "node")
-                    .attr("cx", d => d.x)
-                    .attr('cy', d => d.y)
-                    .attr('r', 5)
-                    .attr("fill", d => this.#colors[d.class])
+                    .attr("d", d => symbol.type(
+                        d.id === this.qid ? this.shape : d3.symbolCircle
+                     )()
+                    )
+                    // .attr("cx", d => d.x)
+                    // .attr('cy', d => d.y)
+                    // .attr('r', 5)
+                    .attr("transform", d => `translate(${d.x}, ${d.y})`)
+                    // .attr("fill", d => this.#colors[d.class])
+                    .attr("fill", this.#colors[0])
             );
     }
 

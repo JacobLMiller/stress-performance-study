@@ -140,7 +140,7 @@
             let svg = d3.select("#visualization-container").append("div")
                     .attr("id", "hyperbolic-canvas")
                     .style("height", `${800}px`);
-            let vis = new HyperbolicVis("#hyperbolic-canvas", data, null, null);  
+            let vis = new HyperbolicVis("#hyperbolic-canvas", data, null, null,parameters);  
             vis.addData(data,null,"blobs");
             vis.process();
             vis.draw();
