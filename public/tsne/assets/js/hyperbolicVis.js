@@ -22,8 +22,8 @@ function drawTriangle(ctx, x, y, size) {
   ctx.lineTo(x - size/2, y + h/2);
   ctx.lineTo(x + size/2, y + h/2);
   ctx.closePath();
-  ctx.stroke();
   ctx.fill();
+  ctx.stroke();  
 }
 
 function drawDiamond(ctx, x, y, size) {
@@ -35,19 +35,33 @@ function drawDiamond(ctx, x, y, size) {
   ctx.lineTo(x - s, y);
   ctx.closePath();
   ctx.fill();
+  ctx.stroke();
 }
 
 function drawCross(ctx, x, y, size, thickness = size / 3) {
   const t = thickness / 2, s = size / 2;
   ctx.beginPath();
-  // vertical bar
-  ctx.rect(x - t, y - s, thickness, size);
-  // horizontal bar
-  ctx.rect(x - s, y - t, size, thickness);
+  // Trace the outer perimeter clockwise (12-vertex polygon)
+  ctx.moveTo(x - t, y - s);
+  ctx.lineTo(x + t, y - s);
+  ctx.lineTo(x + t, y - t);
+  ctx.lineTo(x + s, y - t);
+  ctx.lineTo(x + s, y + t);
+  ctx.lineTo(x + t, y + t);
+  ctx.lineTo(x + t, y + s);
+  ctx.lineTo(x - t, y + s);
+  ctx.lineTo(x - t, y + t);
+  ctx.lineTo(x - s, y + t);
+  ctx.lineTo(x - s, y - t);
+  ctx.lineTo(x - t, y - t);
+  ctx.closePath();
+
   ctx.fill();
+  ctx.stroke();
 }
 
 function drawStar(ctx, x, y, r) {
+    r *= 0.7
   ctx.beginPath();
   for (let i = 0; i < 10; i++) {
     const angle = (Math.PI / 5) * i;
@@ -57,6 +71,7 @@ function drawStar(ctx, x, y, r) {
   }
   ctx.closePath();
   ctx.fill();
+  ctx.stroke();
 }
 
 
@@ -137,8 +152,7 @@ class HyperbolicVis {
     constructor(divId,nodes,links, center_node,parameters) {
         var canvas = HyperbolicCanvas.create(divId);
         var selection = d3.select(canvas);
-        console.log(canvas);
-        console.log(selection);
+
         // selection.getContext("webgl")
         var defaultProperties = {
             lineJoin: 'round',
@@ -169,14 +183,14 @@ class HyperbolicVis {
         this.center_node = center_node;
 
         this.qtype = parameters.qtype;
-        this.qid   = Number(parameters.id);
+        this.qid   = new Set(parameters.id);
         this.correctindex = Number(parameters.correct);
 
         if (this.qtype === "point"){
             const shapes = [
                 (ctx, x, y, s) => drawTriangle(ctx, x, y, s),
-                (ctx, x, y, s) => drawDiamond(ctx, x, y, s),
                 (ctx, x, y, s) => drawCross(ctx, x, y, s),
+                (ctx, x, y, s) => drawDiamond(ctx, x, y, s),
                 (ctx, x, y, s) => drawStar(ctx, x, y, s)
             ]; 
             this.shape = shapes[this.correctindex];
@@ -243,23 +257,11 @@ class HyperbolicVis {
 
         ctx.setTransform(this.curScale);
           
-        this.links.forEach(e => {
-            ctx.strokeStyle = "grey";
-            if (e.source.hovered === HoverState.HOVERED || e.target.hovered === HoverState.HOVERED){
-                ctx.lineWidth = 3;                
-            }else{
-                ctx.lineWidth = 1.5;                
-            }
-
-            this.hcanvas.stroke(
-                this.hcanvas.pathForHyperbolic(HyperbolicCanvas.Line.givenTwoPoints(
-                    e.source.hpnt, 
-                    e.target.hpnt
-                ))
-            )
-        })
+    
+        const isSpecial = (p) => this.qid.has(Number(p.id));
 
         this.nodes.forEach(n => {
+            if(isSpecial(n)) return;
             ctx.strokeStyle = "black";
             ctx.lineWidth = 0.3;
             // ctx.globalAlpha = 0.25;
@@ -280,28 +282,59 @@ class HyperbolicVis {
                 }
             }
             
+            ctx.strokeStyle = "#000";   // black outline
+            ctx.lineWidth = 0.5;            
             
             n.hcircle = HyperbolicCanvas.Circle.givenHyperbolicCenterRadius(
                 n.hpnt, radius / this.curScale.a
             );
 
-            if (n.id !== this.qid){
-                this.hcanvas.fillAndStroke(
-                    this.hcanvas.pathForHyperbolic(n.hcircle)
-                );
-            }else{
-                const center = n.hcircle.getEuclideanCenter();
-                console.log(this.hcanvas.getCanvasPixelCoords(center))
-                let [x,y] = this.hcanvas.getCanvasPixelCoords(center);
-                this.shape(
-                    ctx,
-                    x,
-                    y,
-                    15
-                );
-            
-            }
+
+            this.hcanvas.fillAndStroke(
+                this.hcanvas.pathForHyperbolic(n.hcircle)
+            );
         });
+
+        this.nodes.forEach(n => {
+            if (!isSpecial(n)) return;
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 0.3;
+            // ctx.globalAlpha = 0.25;
+            let radius = this.#nodeRadiusSmall;
+            if (this.hoverNodes.includes(`node_${n.id}`)){
+                // console.log(n.class)
+                ctx.fillStyle = "#FE6100";
+                ctx.lineWidth = 3;
+                radius = this.#nodeRadiusLarge;
+            } else {
+                if (n.hovered === HoverState.HOVERED){
+                    ctx.fillStyle = "#FFB000";
+                }else if(n.hovered === HoverState.HOVER_NEIGHBOR){
+                    ctx.fillStyle = "#DC267F";
+                }else{
+                    // ctx.fillStyle = this.#colors[n.class];
+                    ctx.fillStyle = this.#colors[0];
+                }
+            }
+            ctx.strokeStyle = "#000";   // black outline
+            ctx.lineWidth = 0.5;            
+            
+            
+            n.hcircle = HyperbolicCanvas.Circle.givenHyperbolicCenterRadius(
+                n.hpnt, radius / this.curScale.a
+            );
+
+                
+            const center = n.hcircle.getEuclideanCenter();
+            console.log(n.hcircle.getEuclideanRadius())
+            let [x,y] = this.hcanvas.getCanvasPixelCoords(center);
+            this.shape(
+                ctx,
+                x,
+                y,
+                2.7 * n.hcircle.getEuclideanRadius() * this.hcanvas.getRadius()
+            );
+        })
 
         ctx.lineWidth = 3;
         this.hcanvas.stroke(this.hcanvas.pathForEuclidean(HyperbolicCanvas.Circle.UNIT));
@@ -529,7 +562,7 @@ class HyperbolicVis {
         this.addPan();
         this.addDblClick();
         this.addZoom();
-        this.addResetButton();
+        // this.addResetButton();
         if(this.center_node !== null){
             this.setToCenterNode();
         }
