@@ -29,7 +29,7 @@ This page explains how to interact with the visualization before you begin the s
 
 The image below shows a hyperbolic t-SNE view after re-centering on a region of interest.
 
-![Example of hyperbolic t-SNE interaction showing re-centering by double-clicking](tsne/assets/img/htsne.png)
+![Example of hyperbolic t-SNE interaction showing re-centering by double-clicking](assets/img/htsne.png)
 
 *(This screenshot is for illustration only. Visual appearance may differ slightly in the study.)*
 
