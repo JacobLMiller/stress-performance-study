@@ -35,7 +35,8 @@ This page explains how to interact with the visualization before you begin the s
 
 The image below shows an example of selecting super-points and drilling down to a lower level.
 
-![Example of hierarchical SNE interaction showing selected super-points and a more detailed view after drilling down](assets/img/hsne.png)
+<!-- ![Example of hierarchical SNE interaction showing selected super-points and a more detailed view after drilling down](assets/img/hsne.png) -->
+<img src="assets/img/hsne.png" width="400px">
 
 *(This screenshot is for illustration only. Visual appearance may differ slightly in the study.)*
 
