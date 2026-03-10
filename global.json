@@ -14,7 +14,8 @@
     "stress-performance7",
     "stress-performance8",
     "stress-performance9",
-    "tsne"
+    "tsne",
+    "metrosets"
   ],
   "configs": {
     "library-beauvis": {
@@ -72,6 +73,10 @@
     "tsne":{
       "path": "tsne/config.json",
       "test": false
+    }, 
+    "metrosets": {
+      "path": "metrosets/config.json",
+      "test": true
     }
   }
 }
