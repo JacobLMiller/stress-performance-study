@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetroSets Clientside Prototype</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/node_modules/@reduxjs/toolkit/dist/redux-toolkit.umd.js"></script>
+  <script src="/node_modules/@trrack/core/index.umd.js"></script>
+  <script src="/node_modules/save-svg-as-png/lib/saveSvgAsPng.js"></script>
+  <script src="/node_modules/file-saver/dist/FileSaver.min.js"></script>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <div class="flex min-h-screen">
+    <aside class="w-[280px] bg-white shadow-lg p-3 overflow-y-auto h-screen">
+      <h2 class="text-2xl font-bold mb-6">Sidebar</h2>
+      <div class="space-y-3">
+        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition" id="button_load_data">Load Data</button>
+        <input type="file" id="file_load_data" style="display: none" accept=".csv">
+        <button class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition" id="button_edit">Edit View</button>
+        <div id="container_edit_toggles" class="mt-2 space-y-2 hidden">
+          <label class="flex items-center space-x-2 cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200 transition">
+            <input type="checkbox" id="checkbox_node_dragging" class="form-checkbox h-5 w-5 text-blue-600" checked>
+            <span class="text-gray-800 text-sm">Node Dragging</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200 transition">
+            <input type="checkbox" id="checkbox_schematization" class="form-checkbox h-5 w-5 text-blue-600" checked>
+            <span class="text-gray-800 text-sm">Schematization</span>
+          </label>
+        </div>
+        <button class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition" id="button_presentation">Show Presentation</button>
+        <button class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition" id="button_toggle_line">Toggle Metro Lines</button>
+        <button class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition" id="button_toggle_label">Toggle Element Labels</button>
+
+        <!-- Label Settings Panel -->
+        <div id="label_settings_panel" class="hidden mt-2 bg-gray-50 border border-gray-300 rounded-lg p-3 space-y-2">
+          <h4 class="text-sm font-semibold text-gray-700">Label Settings</h4>
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label for="label_font_size_slider" class="text-xs text-gray-600">Font Size</label>
+              <span id="label_font_size_display" class="text-xs font-mono text-gray-800 bg-white px-2 py-0.5 rounded border border-gray-200">auto</span>
+            </div>
+            <input type="range" id="label_font_size_slider" min="2" max="30" step="1" value="10"
+                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+            <div class="flex justify-between text-[10px] text-gray-400">
+              <span>2px</span>
+              <span>30px</span>
+            </div>
+          </div>
+          <button id="label_font_size_reset" class="w-full text-xs bg-gray-200 text-gray-700 py-1 px-2 rounded hover:bg-gray-300 transition">
+            Reset to Auto
+          </button>
+
+          <div class="border-t border-gray-200 mt-2 pt-2 space-y-1.5">
+            <h4 class="text-sm font-semibold text-gray-700">Label Workflow</h4>
+            <button id="label_clear_labelling" class="w-full text-xs bg-yellow-100 text-yellow-800 py-1.5 px-2 rounded border border-yellow-300 hover:bg-yellow-200 transition">
+              Clear Labelling (Enter Draft Mode)
+            </button>
+            <button id="label_clear_all_preferences" class="w-full text-xs bg-red-100 text-red-800 py-1.5 px-2 rounded border border-red-300 hover:bg-red-200 transition">
+              Clear All Preferences
+            </button>
+            <button id="label_finalize" class="w-full text-xs bg-green-100 text-green-800 py-1.5 px-2 rounded border border-green-300 hover:bg-green-200 transition">
+              Finalize Labels
+            </button>
+            <div id="label_mode_indicator" class="text-[10px] text-gray-500 text-center">Mode: <span id="label_mode_text" class="font-semibold">Full</span></div>
+          </div>
+        </div>
+        <button class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition" id="button_undo">Undo</button>
+        <button class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition" id="button_redo">Redo</button>
+        <div class="text-xs text-gray-500 pt-2">Ctrl+Z / Ctrl+Y for Undo/Redo</div>
+
+        <div class="pt-4 border-t border-gray-300 mt-2">
+            <button class="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition" id="button_export_png">Export as PNG</button>
+            <button class="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition mt-2" id="button_export_svg">Export as SVG</button>
+            <button class="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition mt-2" id="button_export_json">Export Data (JSON)</button>
+            <button class="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition mt-2" id="button_import_json">Import Data (JSON)</button>
+            <input type="file" id="file_import_json" style="display: none" accept=".json">
+        </div>
+
+        <div class="border-t border-gray-300 mt-4 pt-4">
+          <div class="mt-4 pt-4 border-t border-gray-200">
+          <h4 class="text-md font-semibold mb-2">Tools</h4>
+            <button class="w-full bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition flex items-center justify-center gap-2" id="button_cutting_tool">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9L12 15L18 9" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 4L20 20" stroke-linecap="round"/>
+              </svg>
+              <span>Cutting Tool</span>
+            </button>
+            <div class="text-xs text-gray-500 mt-1">Draw a line to insert spread points</div>
+
+            <label class="flex items-center space-x-2 cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200 transition mt-3">
+              <input type="checkbox" id="checkbox_single_node_drag" class="form-checkbox h-5 w-5 text-orange-600">
+              <span class="text-gray-800 text-sm">Single Node Drag Mode</span>
+            </label>
+            <div class="text-xs text-gray-500 mt-1">Only move the dragged node (no force simulation)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+      <main class="flex-1 p-1">
+        <svg id="map-svg"></svg>
+      </main>
+    </div>
+
+    <script type="module">
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+        import runPipeline from './metro_pipeline.js';
+        import Visualization from './modules/visualize/index.js';
+        import * as Preprocess from './modules/preprocess.js';
+        import provenanceTracker from './modules/provenance.js';
+        import { setCuttingToolEnabled } from './modules/visualize/cutting-tool.js';
+
+        let visualization = null;
+        let currentDatasetName = "map";
+
+        (async () => {
+            try {
+                // Edit View Toggle Logic
+                const editTogglesContainer = document.getElementById("container_edit_toggles");
+                const nodeDraggingCheckbox = document.getElementById("checkbox_node_dragging");
+                const schematizationCheckbox = document.getElementById("checkbox_schematization");
+                const editButton = document.getElementById("button_edit");
+
+                function updateEditTogglesVisibility(view) {
+                    if (view === 'edit') {
+                        editTogglesContainer.classList.remove('hidden');
+                        editButton.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+                        editButton.classList.add('bg-blue-500', 'text-white', 'hover:bg-blue-600');
+                    } else {
+                        editTogglesContainer.classList.add('hidden');
+                        editButton.classList.remove('bg-blue-500', 'text-white', 'hover:bg-blue-600');
+                        editButton.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+                    }
+                }
+
+                function syncVisualizationSettings() {
+                    if (visualization) {
+                        visualization.setNodeDragging(nodeDraggingCheckbox.checked);
+                        visualization.setSchematization(schematizationCheckbox.checked);
+                    }
+                }
+
+                nodeDraggingCheckbox.addEventListener("change", (e) => {
+                    if (visualization) {
+                        visualization.setNodeDragging(e.target.checked);
+                    }
+                });
+
+                schematizationCheckbox.addEventListener("change", (e) => {
+                    if (visualization) {
+                        visualization.setSchematization(e.target.checked);
+                    }
+                });
+
+                // Initial load
+                currentDatasetName = "magic";
+                const baseUrl = window.location.href.split('?')[0].replace(/\/$/, "").replace(/\/index\.html$/, "");
+                var data = await Preprocess.load_data(`${baseUrl}/data/${currentDatasetName}.csv`);
+                data = await runPipeline(data);
+
+                visualization = new Visualization("#map-svg", data);
+                syncVisualizationSettings();
+                provenanceTracker.initialize(visualization);
+                visualization.showEdit();
+                updateEditTogglesVisibility('edit');
+
+                // Setup event listeners
+                document.getElementById("button_load_data").addEventListener("click", () => {
+                    document.getElementById("file_load_data").click();
+                });
+
+                document.getElementById("file_load_data").addEventListener("change", (event) => {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            console.log("Loading data from file:", file.name);
+                            const csvText = e.target.result;
+                            currentDatasetName = file.name.replace(/\.[^/.]+$/, "");
+
+                            const parsedCsv = d3.csvParse(csvText);
+                            let data = Preprocess.parse_data(parsedCsv);
+
+                            // Run pipeline and update visualization
+                            data = await runPipeline(data);
+
+                            d3.select("#map-svg").selectAll("*").remove();
+                            visualization = new Visualization("#map-svg", data);
+                            syncVisualizationSettings();
+                            provenanceTracker.initialize(visualization);
+                            visualization.showEdit();
+                            updateEditTogglesVisibility('edit');
+                            document.getElementById("label_settings_panel").classList.add('hidden');
+
+                            console.log("Data loaded and rendered.");
+                        } catch (err) {
+                            console.error("Failed to load/process CSV:", err);
+                            alert("Error processing file: " + err.message);
+                        }
+                        event.target.value = '';
+                    };
+                    reader.readAsText(file);
+                });
+
+                document.getElementById("button_edit").addEventListener("click", () => {
+                  if(visualization) {
+                    console.log(`[BTN] Edit clicked. Before: ${visualization.currentView}`);
+                    visualization.showEdit();
+                    updateEditTogglesVisibility('edit');
+                    setTimeout(() => console.log(`[BTN] After showEdit. Now: ${visualization.currentView}`), 0);
+                  }
+                });
+
+                document.getElementById("button_presentation").addEventListener("click", () => {
+                  if(visualization) {
+                    console.log(`[BTN] Presentation clicked. Before: ${visualization.currentView}`);
+                    visualization.showPresentation();
+                    updateEditTogglesVisibility('presentation');
+                    setTimeout(() => console.log(`[BTN] After showPresentation. Now: ${visualization.currentView}`), 0);
+                  }
+                });
+                document.getElementById("button_toggle_line").addEventListener("click", () => {
+                    console.log("[BTN] Toggle metro lines clicked");
+                    if(visualization !== null) {
+                        visualization.toggleMetrolines();
+                        console.log(`[LINES] show_lines now: ${visualization.show_lines}`);
+                    }
+                });
+
+                // Label Settings Panel logic (defined before toggle handler that references them)
+                const labelFontSizeSlider = document.getElementById("label_font_size_slider");
+                const labelFontSizeDisplay = document.getElementById("label_font_size_display");
+                const labelFontSizeReset = document.getElementById("label_font_size_reset");
+                let labelFontSizeIsManual = false;
+                const labelModeText = document.getElementById("label_mode_text");
+
+                function updateLabelFontSizeDisplay() {
+                    if (!visualization) return;
+                    if (visualization.manualFontSize != null) {
+                        labelFontSizeDisplay.textContent = `${visualization.manualFontSize}px`;
+                        labelFontSizeSlider.value = visualization.manualFontSize;
+                        labelFontSizeIsManual = true;
+                    } else if (visualization.lastComputedFontSize != null) {
+                        labelFontSizeDisplay.textContent = `${visualization.lastComputedFontSize}px (auto)`;
+                        labelFontSizeSlider.value = visualization.lastComputedFontSize;
+                        labelFontSizeIsManual = false;
+                    } else {
+                        labelFontSizeDisplay.textContent = 'auto';
+                        labelFontSizeIsManual = false;
+                    }
+                }
+
+                function updateLabelModeIndicator() {
+                    if (!visualization) return;
+                    if (visualization.labelEditMode === 'drafting') {
+                        labelModeText.textContent = 'Drafting';
+                        labelModeText.className = 'font-semibold text-yellow-700';
+                    } else {
+                        labelModeText.textContent = 'Full';
+                        labelModeText.className = 'font-semibold text-green-700';
+                    }
+                }
+
+                document.getElementById("button_toggle_label").addEventListener("click", () => {
+                    console.log("[BTN] Toggle labels clicked");
+                    if(visualization !== null) {
+                        visualization.toggleLabels();
+                        console.log(`[LABELS] show_labels now: ${visualization.show_labels}`);
+
+                        // Show/hide label settings panel
+                        const labelPanel = document.getElementById("label_settings_panel");
+                        if (visualization.show_labels) {
+                            labelPanel.classList.remove('hidden');
+                            updateLabelFontSizeDisplay();
+                            updateLabelModeIndicator();
+                        } else {
+                            labelPanel.classList.add('hidden');
+                        }
+                    }
+                });
+
+                labelFontSizeSlider.addEventListener("input", (e) => {
+                    if (!visualization) return;
+                    const size = parseInt(e.target.value, 10);
+                    labelFontSizeDisplay.textContent = `${size}px`;
+                    labelFontSizeIsManual = true;
+                    visualization.setManualFontSize(size);
+                    updateLabelFontSizeDisplay();
+                });
+
+                labelFontSizeReset.addEventListener("click", () => {
+                    if (!visualization) return;
+                    visualization.clearManualFontSize();
+                    updateLabelFontSizeDisplay();
+                });
+
+                // Label workflow buttons
+                document.getElementById("label_clear_labelling").addEventListener("click", () => {
+                    if (!visualization || !visualization.show_labels) return;
+                    visualization.clearLabelling();
+                    updateLabelModeIndicator();
+                    console.log("[LABELS] Entered drafting mode — non-fixed labels at 20% opacity");
+                });
+
+                document.getElementById("label_clear_all_preferences").addEventListener("click", () => {
+                    if (!visualization || !visualization.show_labels) return;
+                    visualization.clearAllPreferences();
+                    updateLabelModeIndicator();
+                    console.log("[LABELS] All preferences cleared");
+                });
+
+                document.getElementById("label_finalize").addEventListener("click", () => {
+                    if (!visualization || !visualization.show_labels) return;
+                    visualization.finalizeLabels();
+                    updateLabelModeIndicator();
+                    console.log("[LABELS] Labels finalized — all at full opacity");
+                });
+                document.getElementById("button_undo").addEventListener("click", () => {
+                    provenanceTracker.undo();
+                });
+
+                document.getElementById("button_redo").addEventListener("click", () => {
+                    provenanceTracker.redo();
+                });
+
+                const exportFonts = [
+                    {
+                        url: 'https://fonts.gstatic.com/s/ptsansnarrow/v11/BngRUXNadjH0qYEzV7ab-oWlsbCGwR0.woff2',
+                        format: 'application/font-woff2',
+                        text: "@font-face {font-family: 'PT Sans Narrow'; font-style: normal; font-weight: 400; src: local('PT Sans Narrow'), local('PTSans-Narrow'), url(https://fonts.gstatic.com/s/ptsansnarrow/v11/BngRUXNadjH0qYEzV7ab-oWlsbCGwR0.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }"
+                    },
+                    {
+                        url: 'https://fonts.gstatic.com/s/robotomono/v12/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.woff2',
+                        format: 'application/font-woff2',
+                        text: "@font-face {font-family: 'Roboto Mono'; font-style: normal; font-weight: 400; src: local('Roboto Mono'), local('Roboto-Mono'), url(https://fonts.gstatic.com/s/robotomono/v12/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }"
+                    }
+                ];
+
+                function createExportSvgElement() {
+                     if (!visualization || !visualization.svg) return null;
+
+                     const rootSvg = visualization.svg.node();
+                     const bounds = rootSvg.getBoundingClientRect();
+                     const w = bounds.width;
+                     const h = bounds.height;
+
+                     if (w === 0 || h === 0) {
+                         console.warn("Export aborted: Empty bounding box");
+                         return null;
+                     }
+
+                     // Clone the entire root SVG to capture exactly what is seen (WYSIWYG)
+                     // This includes the legend (attached to root) and the current zoom transform
+                     const clone = rootSvg.cloneNode(true);
+
+                     // Set explicit dimensions to match current viewport
+                     clone.setAttribute("width", w);
+                     clone.setAttribute("height", h);
+                     // Ensure background is valid (sometimes helps with transparency issues)
+                     clone.style.backgroundColor = "white";
+
+                     // Remove unwanted UI overlays
+                     // 1. Line position numbers (from line connection modal)
+                     const lineNumbers = clone.querySelectorAll(".line-position-numbers");
+                     lineNumbers.forEach(el => el.remove());
+
+                     // Create a container for the off-screen SVG
+                     // We place it far off-screen but keep it "visible" in the DOM for rendering
+                     const container = document.createElement("div");
+                     container.style.position = "fixed";
+                     container.style.left = "-20000px";
+                     container.style.top = "0";
+                     container.style.visibility = "visible";
+                     container.style.zIndex = "-9999";
+
+                     container.appendChild(clone);
+                     document.body.appendChild(container);
+
+                     return { svg: clone, cleanup: () => container.remove(), width: w, height: h };
+                }
+
+                document.getElementById("button_export_png").addEventListener("click", () => {
+                    if (!visualization) return;
+                    const { svg, cleanup, width, height } = createExportSvgElement() || {};
+                    if (!svg) return;
+
+                    // Calculate a safe scale. Browsers have canvas limits (often ~16k px).
+                    // We limit the max dimension to ~8000px to be safe.
+                    const maxDim = Math.max(width, height);
+                    let exportScale = 2;
+                    if (maxDim * exportScale > 8000) {
+                       exportScale = 8000 / maxDim;
+                       console.log(`Auto-scaling export from ${maxDim}px (scale 2) to scale ${exportScale.toFixed(2)} to fit canvas limits.`);
+                    }
+
+                    // Small delay to allow DOM to layout the new element
+                    setTimeout(() => {
+                        saveSvgAsPng(svg, currentDatasetName + '_metro.png', {
+                            backgroundColor: 'white',
+                            excludeUnusedCss: false,
+                            scale: exportScale,
+                            encoderOptions: 1.0, // High quality
+                            fonts: exportFonts
+                        }).then(() => {
+                            cleanup();
+                        }).catch((e) => {
+                            console.error("PNG export failed:", e);
+                            cleanup();
+                        });
+                    }, 100);
+                });
+
+                document.getElementById("button_export_svg").addEventListener("click", () => {
+                    if (!visualization) return;
+                    const { svg, cleanup } = createExportSvgElement() || {};
+                    if (!svg) return;
+
+                    svgAsDataUri(svg, {
+                        backgroundColor: 'white',
+                        excludeCss: false, // Include CSS
+                        fonts: exportFonts
+                    }).then(uri => saveAs(uri, currentDatasetName + '_metro.svg'))
+                      .catch(e => console.error(e))
+                      .finally(cleanup);
+                });
+
+                function replacer(key, value) {
+                  if(value instanceof Map) {
+                    return {
+                      dataType: 'Map',
+                      value: Array.from(value.entries()),
+                    };
+                  } else {
+                    return value;
+                  }
+                }
+
+                function reviver(key, value) {
+                  if(typeof value === 'object' && value !== null) {
+                    if (value.dataType === 'Map') {
+                      return new Map(value.value);
+                    }
+                  }
+                  return value;
+                }
+
+                function sanitizeMetroDataForExport(rawData) {
+                  // Build a JSON-safe, non-cyclic representation.
+                  // Keep only what we can reasonably re-import.
+                  const out = {};
+
+                  // Copy primitives / plain objects cautiously; avoid copying d3 selections, DOM nodes, etc.
+                  out.nodes = Array.isArray(rawData.nodes)
+                    ? rawData.nodes.map(n => {
+                        const scalarExtras = Object.fromEntries(
+                          Object.entries(n).filter(([k, v]) => (
+                            v === null || ['string', 'number', 'boolean'].includes(typeof v)
+                          ))
+                        );
+
+                        return {
+                          id: n.id,
+                          x: n.x,
+                          y: n.y,
+                          // schematic coords (if present)
+                          x_s: n.x_s,
+                          y_s: n.y_s,
+                          // optional fields used throughout the pipeline (keep if present)
+                          label: n.label,
+                          name: n.name,
+                          group: n.group,
+                          // Preserve ports
+                          ports: Array.isArray(n.ports) ? n.ports.map(p => {
+                             const pClean = {};
+                             for (const [pk, pv] of Object.entries(p)) {
+                               // Skip circular references
+                               if (pk === 'parent' || pk === 'node' || pk === 'edges') continue;
+                               if (pv === null || ['string', 'number', 'boolean'].includes(typeof pv)) {
+                                 pClean[pk] = pv;
+                               }
+                             }
+                             return pClean;
+                          }) : undefined,
+                          ...scalarExtras
+                        };
+                      })
+                    : [];
+
+                  out.links = Array.isArray(rawData.links)
+                    ? rawData.links.map(l => {
+                        const src = (l.source && typeof l.source === 'object') ? l.source.id : l.source;
+                        const tgt = (l.target && typeof l.target === 'object') ? l.target.id : l.target;
+                        const clean = {
+                          source: src,
+                          target: tgt,
+                        };
+
+                        if (l.source_port && typeof l.source_port === 'object') {
+                            clean.source_port_octilinear_id = l.source_port.octilinear_id;
+                        }
+                        if (l.target_port && typeof l.target_port === 'object') {
+                            clean.target_port_octilinear_id = l.target_port.octilinear_id;
+                        }
+
+                        // Keep typical scalar fields (weight, value, etc.)
+                        for (const [k, v] of Object.entries(l)) {
+                          if (k === 'source' || k === 'target') continue;
+                          if (k === 'bend' && v && typeof v === 'object') {
+                            const bx = v.x ?? v[0];
+                            const by = v.y ?? v[1];
+                            if (typeof bx === 'number' && typeof by === 'number') {
+                              clean.bend = { x: bx, y: by };
+                            }
+                            continue;
+                          }
+                          if (v === null || ['string', 'number', 'boolean'].includes(typeof v)) {
+                            clean[k] = v;
+                          }
+                        }
+                        return clean;
+                      })
+                    : [];
+
+                  // Keep set_order (used to draw metrolines).
+                  if (rawData.set_order && typeof rawData.set_order === 'object') {
+                    out.set_order = rawData.set_order;
+                  }
+
+                  // Maps used by editing/schematize. These may be Maps (handled by replacer).
+                  if (rawData.portSelections) out.portSelections = rawData.portSelections;
+                  if (rawData.fixedAssignments) out.fixedAssignments = rawData.fixedAssignments;
+
+                  // Any other safe top-level scalar props
+                  for (const [k, v] of Object.entries(rawData)) {
+                    if (k in out) continue;
+                    if (v === null || ['string', 'number', 'boolean'].includes(typeof v)) {
+                      out[k] = v;
+                    }
+                  }
+
+                  return out;
+                }
+
+                document.getElementById("button_export_json").addEventListener("click", () => {
+                    if (!visualization) return;
+
+                    const cleanData = sanitizeMetroDataForExport(visualization.data);
+
+                    const exportObj = {
+                        metadata: {
+                            version: "1.0",
+                            type: "metro-sets-export",
+                            timestamp: new Date().toISOString(),
+                            datasetName: currentDatasetName
+                        },
+                        viewState: {
+                             currentView: visualization.currentView,
+                             show_lines: visualization.show_lines,
+                             show_labels: visualization.show_labels
+                        },
+                        data: cleanData
+                    };
+
+                    const jsonStr = JSON.stringify(exportObj, replacer, 2);
+                    const blob = new Blob([jsonStr], {type: "application/json"});
+                    saveAs(blob, `${currentDatasetName}_data.json`);
+                });
+
+                // NOTE: Import button id is "button_import_json".
+                // Trigger hidden file input.
+                document.getElementById("button_import_json").addEventListener("click", () => {
+                    document.getElementById("file_import_json").click();
+                });
+
+                document.getElementById("file_import_json").addEventListener("change", async (event) => {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            const jsonStr = e.target.result;
+                            const importedObj = JSON.parse(jsonStr, reviver);
+
+                            if (!importedObj.data) {
+                                throw new Error("Invalid format: missing data field");
+                            }
+
+                            console.log("Importing data...", importedObj);
+
+                            // Restore Dataset Name
+                            if (importedObj.metadata && importedObj.metadata.datasetName) {
+                                currentDatasetName = importedObj.metadata.datasetName;
+                            }
+
+                            // Clear existing SVG
+                            d3.select("#map-svg").selectAll("*").remove();
+
+                            // Create new visualization with imported data
+                            visualization = new Visualization("#map-svg", importedObj.data);
+                            // Sync settings with current checkbox states
+                            syncVisualizationSettings();
+                            provenanceTracker.initialize(visualization);
+
+                            // Restore view state
+                            if (importedObj.viewState) {
+                                 const vs = importedObj.viewState;
+
+                                 // Restore toggles
+                                 if (vs.show_lines === true && visualization.show_lines === false) {
+                                     visualization.toggleMetrolines();
+                                 }
+                                 if (vs.show_labels === true && visualization.show_labels === false) {
+                                     visualization.toggleLabels();
+                                 }
+
+                                 // Sync label panel visibility
+                                 const labelPanel = document.getElementById("label_settings_panel");
+                                 if (visualization.show_labels) {
+                                     labelPanel.classList.remove('hidden');
+                                     updateLabelFontSizeDisplay();
+                                 } else {
+                                     labelPanel.classList.add('hidden');
+                                 }
+
+                                 // Restore View
+                                 if (vs.currentView === 'presentation') {
+                                     visualization.showPresentation(false);
+                                     updateEditTogglesVisibility('presentation');
+                                 } else {
+                                     visualization.showEdit(false);
+                                     updateEditTogglesVisibility('edit');
+                                 }
+                            } else {
+                                visualization.showEdit();
+                                updateEditTogglesVisibility('edit');
+                            }
+
+                        } catch (err) {
+                            console.error("Error parsing JSON file:", err);
+                            alert("Failed to import data: " + err.message);
+                        }
+                        e.target.value = ''; // Reset
+                    };
+                    reader.readAsText(file);
+                });
+
+
+                // Cutting tool button - toggles cutting mode
+                const cuttingToolBtn = document.getElementById("button_cutting_tool");
+                let isCuttingActive = false;
+
+                cuttingToolBtn.addEventListener("click", () => {
+                    if (!visualization) return;
+
+                    isCuttingActive = !isCuttingActive;
+
+                    setCuttingToolEnabled(isCuttingActive, visualization);
+
+                    if (isCuttingActive) {
+                        cuttingToolBtn.classList.remove("bg-orange-500", "hover:bg-orange-600");
+                        cuttingToolBtn.classList.add("bg-red-600", "hover:bg-red-700");
+                        cuttingToolBtn.querySelector("span").textContent = "Cutting Tool (Active)";
+                        console.log("Cutting tool: ACTIVE - Draw a line across edges to insert spread points");
+                    } else {
+                        cuttingToolBtn.classList.remove("bg-red-600", "hover:bg-red-700");
+                        cuttingToolBtn.classList.add("bg-orange-500", "hover:bg-orange-600");
+                        cuttingToolBtn.querySelector("span").textContent = "Cutting Tool";
+                        console.log("Cutting tool: INACTIVE");
+                    }
+                });
+
+                // Single node drag mode toggle
+                const singleNodeDragCheckbox = document.getElementById("checkbox_single_node_drag");
+                singleNodeDragCheckbox.addEventListener("change", () => {
+                    if (visualization) {
+                        visualization.setSingleNodeDragMode(singleNodeDragCheckbox.checked);
+                        console.log(`Single node drag mode: ${singleNodeDragCheckbox.checked ? 'ON' : 'OFF'}`);
+                    }
+                });
+
+            } catch (err) {
+                console.error("Failed to load or process graph:", err);
+            }
+        })();
+    </script>
+</body>
+</html>

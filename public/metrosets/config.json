@@ -1,0 +1,185 @@
+{
+    "$schema": "https://raw.githubusercontent.com/revisit-studies/study/main/src/parser/StudyConfigSchema.json",
+    "studyMetadata": {
+        "title": "MetroSets",
+        "version": "pilot",
+        "authors": [
+            "Markus Wallinger", "Attila Berczik", "Jacob Miller"
+        ],
+        "date": "today",
+        "description": "A simple questionnaire study",
+        "organizations": [
+            "Technical University of Munich"
+        ]
+    },
+    "uiConfig": {
+        "contactEmail": "jacob.miller@tum.de",
+        "logoPath": "revisitAssets/monash.jpeg",
+        "urlParticipantIdParam": "PROLIFIC_PID",
+        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [LINK](https://app.prolific.com/submissions/complete?cc=C1FIJHXG)",        
+        "withProgressBar": true,
+        "autoDownloadStudy": false,
+        "sidebar": true  
+    },
+    "baseComponents": {
+        "questions": {
+            "type": "website", 
+            "response": [
+                {
+                    "id": "answer", 
+                    "prompt": "What is the largest edge in the hypergraph??",
+                    "required": true, 
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": ["2", "3", "4", "5", "I am unable to work this out"]
+                }
+            ], 
+            "path": "metrosets/assets/server/index.html", 
+            "instructionLocation": "aboveStimulus"
+        }
+    },
+    "components": {
+        "prolific": {
+            "type": "markdown",
+            "path": "stress-performance/assets/introduction.md",
+            "response": [
+                {
+                    "id": "prolificId",
+                    "prompt": "Please enter your Prolific ID",
+                    "required": true,
+                    "location": "belowStimulus",
+                    "type": "shortText",
+                    "placeholder": "Prolific ID",
+                    "paramCapture": "PROLIFIC_PID"
+                }
+            ]
+        },        
+        "introduction": {
+            "type": "markdown",
+            "path": "stress-performance/assets/Explanatory_Statement.md",
+            "response": []
+        },
+        "consent": {
+            "type": "markdown",
+            "path": "stress-performance/assets/Explanatory_Statement3.md",
+            "response": []
+        },        
+        "training":{
+            "type": "markdown",
+            "path": "stress-performance/assets/definitions.md",
+            "response": []
+        },
+        "break": {
+            "type": "markdown",
+            "path": "stress-performance/assets/break.md",
+            "response": []
+        },
+        "training_prep": {
+            "type": "markdown",
+            "path": "stress-performance/assets/prep.md",
+            "response": []
+        },
+        "demographics": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "strategy",
+                    "prompt": "Please describe your overall strategy in answering.",
+                    "required": false,
+                    "location": "aboveStimulus",
+                    "type": "longText",
+                    "placeholder": "Please describe your strategy."
+                },
+                {
+                    "id": "confidence",
+                    "prompt": "How confident are you in your responses overall?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "options": [
+                        "Not confident at all",
+                        "Not very confident", 
+                        "Somewhat confident", 
+                        "Very confident"
+                    ]
+                },
+                {
+                    "id": "difficulty",
+                    "prompt": "How difficult did you find this study?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "options": [
+                        "Very difficult",
+                        "Difficult", 
+                        "Easy", 
+                        "Very easy"
+                    ]
+                },
+                {
+                    "id": "familiar",
+                    "prompt": "How familiar are you with network diagrams?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "options": [
+                        "They are new to me",
+                        "Not very familiar", 
+                        "Somewhat familiar", 
+                        "Very familiar"
+                    ]
+                }, 
+                {
+                    "id": "age",
+                    "prompt": "What is your age group?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "options": [
+                        "18-25",
+                        "26-35", 
+                        "36-45", 
+                        "46-55",
+                        "56-65",
+                        "66+", 
+                        "I'd rather not say"
+                    ]
+                },
+                {
+                    "id": "gender",
+                    "prompt": "Please indicate your gender identity.",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "options": [
+                        "Male",
+                        "Female", 
+                        "Non-binary", 
+                        "Other/not listed",
+                        "I'd rather not say"
+                    ]
+                }                                  
+            ]
+        }, 
+        "question1": {
+        "type": "website",
+        "path": "https://beta.metrosets.algo.cit.tum.de/",
+        "response": [
+            {
+            "id": "webapp-response",
+            "location": "belowStimulus",
+            "type": "reactive",
+            "prompt": "Interact with the system below"
+            }
+        ]
+        }
+    },
+    "sequence": {
+        "order": "fixed",
+        "components": [
+            "prolific",
+            "question1",
+            "demographics"
+        ]
+    }
+}
