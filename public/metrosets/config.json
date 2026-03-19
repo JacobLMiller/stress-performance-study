@@ -16,7 +16,7 @@
         "contactEmail": "jacob.miller@tum.de",
         "logoPath": "revisitAssets/tum.svg",
         "urlParticipantIdParam": "PROLIFIC_PID",
-        "studyEndMsg": "**Thank you for completing the study.",        
+        "studyEndMsg": "Thank you for completing the study.",        
         "withProgressBar": true,
         "autoDownloadStudy": false,
         "sidebar": false  
