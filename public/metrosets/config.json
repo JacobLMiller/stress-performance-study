@@ -163,14 +163,8 @@
         }, 
         "question1": {
         "type": "website",
-        "path": "https://beta.metrosets.algo.cit.tum.de/",
+        "path": "https://beta.metrosets.algo.cit.tum.de/app.html?dataset=magic",
         "response": [
-            {
-            "id": "webapp-response",
-            "location": "belowStimulus",
-            "type": "reactive",
-            "prompt": "Interact with the system below"
-            }
         ]
         }
     },
