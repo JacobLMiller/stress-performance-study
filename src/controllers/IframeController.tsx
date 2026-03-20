@@ -21,7 +21,7 @@ export function IframeController({ currentConfig, provState, answers }: { curren
   const storeDispatch = useStoreDispatch();
   const dispatch = useDispatch();
   const identifier = useCurrentIdentifier();
-  const [height, setHeight] = useState(800);
+  const [height, setHeight] = useState<number | string>('90vh');
 
   const ref = useRef<HTMLIFrameElement>(null);
 
@@ -117,7 +117,13 @@ export function IframeController({ currentConfig, provState, answers }: { curren
           : `${BASE_PREFIX}${currentConfig.path}?trialid=${currentComponent}&id=${iframeId}`
       }
       style={{ ...defaultStyle, height }}
-      onLoad={() => setHeight((ref.current?.contentWindow?.document.body.scrollHeight || 750) + 20)}
+      onLoad={() => {
+          try {
+              setHeight((ref.current?.contentWindow?.document.body.scrollHeight || 750) + 20);
+          } catch (e) {
+              setHeight('85vh');
+          }
+      }}
     />
   );
 }
